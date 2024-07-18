@@ -1,3 +1,5 @@
+using UnityEngine;
+
 [System.Serializable]
 public class Enemy : Entity
 {
@@ -13,4 +15,5 @@ public class Enemy : Entity
     public bool canFly { get; set; }
     public bool canMove { get; set; }
     public bool canAttack { get; set; }
+    [HideInInspector] public EnemyIndicator enemyIndicator;
 }

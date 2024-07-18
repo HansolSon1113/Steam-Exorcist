@@ -17,8 +17,8 @@ MonoBehaviour:
     cardSprite: {fileID: 7482667652216324306, guid: 4a76559d7c7cd4d65a3c37f704ed9b23, type: 3}
     prefab: {fileID: 2587433902068127199, guid: e0823be180da0431cb091fa5c20bb68b, type: 3}
     damage:
-      minDamage: 1
-      maxDamage: 10
+      minDamage: 10
+      maxDamage: 20
       critChance: 50
       critMultiplier: 2
       armorPenetration: 5
@@ -29,8 +29,8 @@ MonoBehaviour:
     cardSprite: {fileID: 7482667652216324306, guid: 4a76559d7c7cd4d65a3c37f704ed9b23, type: 3}
     prefab: {fileID: 2587433902068127199, guid: e0823be180da0431cb091fa5c20bb68b, type: 3}
     damage:
-      minDamage: 1
-      maxDamage: 10
+      minDamage: 10
+      maxDamage: 20
       critChance: 50
       critMultiplier: 2
       armorPenetration: 5

@@ -15,11 +15,8 @@ public class DoDamage : MonoBehaviour
             {
                 damageAmount *= damage.critMultiplier;
             }
-            float armorReduction = 1 - (armor / 100f);
-            if (damage.armorPenetration != 0)
-            {
-                armorReduction *= (1 - damage.armorPenetration / 100f);
-            }
+            float armorReduction = 1 - ((armor - damage.armorPenetration) / 100f);
+
             damageAmount *= armorReduction;
             targetHealth.health -= damageAmount;
             Debug.Log($"{damageAmount} {targetHealth.health}");

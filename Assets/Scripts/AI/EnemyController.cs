@@ -7,17 +7,15 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         enemy = new Enemy();
-        enemy.isFlying = false;
-        enemy.playerFound = false;
-        enemy.canFly = false;
-        enemy.canMove = true;
-        enemy.canAttack = true;
     }
 
     public void Setup(Enemy enemy, float health, float maxHealth)
     {
         this.enemy = enemy;
         enemy.health = new Health(health, maxHealth);
+        enemy.isFlying = false;
+        enemy.playerFound = false;
+        enemy.enemyIndicator = GetComponent<EnemyIndicator>();
     }
 
     public Enemy enemy { get; set; }
