@@ -13,14 +13,21 @@ MonoBehaviour:
   m_Name: EnemySO
   m_EditorClassIdentifier: 
   enemies:
-  - name: 
+  - name: Enemy1
+    enemy:
+      armor: 10
+      health:
+        health: 50
+        maxHealth: 50
+      direction: -1
+      isFlying: 0
+      damage:
+        minDamage: 0
+        maxDamage: 0
+        critChance: 0
+        critMultiplier: 0
+        armorPenetration: 0
+        ally: 0
     enemyPrefab:
-      enemyPrefab: {fileID: 0}
+      enemyPrefab: {fileID: 2060700857918524781, guid: d2b95fdfa58454d48b52365db79bbd94, type: 3}
       enemyDamagePrefab: {fileID: 0}
-    damage:
-      minDamage: 0
-      maxDamage: 0
-      critChance: 0
-      critMultiplier: 0
-      armorPenetration: 0
-    ally: 0

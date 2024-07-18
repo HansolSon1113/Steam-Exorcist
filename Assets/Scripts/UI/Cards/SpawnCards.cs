@@ -1,11 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnCards
+public interface CardSpawn
 {
-    public void GetSkills(SkillSO skills, List<SkillElements> cardList)
+    public void GetSkills(SkillSO skills, List<SkillElements> cardList);
+    public void Spawn(Transform cardRotation, GameObject cardPrefab, List<SkillElements> cardList, float cardDistance);
+}
+
+public class SpawnCards : MonoBehaviour, CardSpawn
+{
+    CardManager cardManager;
+
+    public void GetSkills(SkillSO Skills, List<SkillElements> cardList)
     {
-        foreach (var card in skills.skills)
+        foreach (var card in Skills.skills)
         {
             cardList.Add(card);
         }
@@ -13,9 +21,9 @@ public class SpawnCards
 
     public void Spawn(Transform cardRotation, GameObject cardPrefab, List<SkillElements> cardList, float cardDistance)
     {
-        for (int j = 0; j < cardList.Count; j++)
+        for (int i = 0; i < cardList.Count; i++)
         {
-            float angle = (j == 0) ? Mathf.PI / 2 : (j * -Mathf.PI * 2 / cardList.Count) + Mathf.PI / 2;
+            float angle = (i == 0) ? Mathf.PI / 2 : (i * -Mathf.PI * 2 / cardList.Count) + Mathf.PI / 2;
             Vector3 direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
 
             float initialRotationAngle = 0f;
@@ -29,7 +37,15 @@ public class SpawnCards
             cardObject.transform.rotation = Quaternion.LookRotation(Vector3.forward, rotatedDirection);
 
             var cardElement = cardObject.GetComponent<CardElement>();
-            cardElement.CardSprite.sprite = cardList[j].cardSprite;
+            cardElement.Setup(cardList[i]);
         }
+    }
+
+    void Start()
+    {
+        cardManager = CardManager.Instance;
+        GetSkills(cardManager.skillSO, cardManager.skillList);
+        Spawn(cardManager.cardRotation, cardManager.cardPrefab, cardManager.skillList, cardManager.cardDistance);
+        cardManager.Setup();
     }
 }

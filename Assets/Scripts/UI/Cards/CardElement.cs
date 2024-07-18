@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class CardElement : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer cardSprite;
+    [SerializeField] SpriteRenderer sprite;
+    public string name;
 
-    public SpriteRenderer CardSprite{ get; set; }
+    public void Setup(SkillElements card)
+    {
+        this.name = card.name;
+        this.sprite.sprite = card.cardSprite;
+        this.sprite.sortingOrder = 100;
+    }
 }

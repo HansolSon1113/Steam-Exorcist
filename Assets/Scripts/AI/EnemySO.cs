@@ -4,9 +4,10 @@ using UnityEngine;
 public class EnemyElements
 {
     public string name;
+    public Enemy enemy;
+    public float health;
+    public float maxHealth;
     public EnemyPrefab enemyPrefab;
-    public Damage damage;
-    public bool ally;
 }
 
 [CreateAssetMenu(fileName = "EnemySO", menuName = "Scriptable Objects/EnemySO")]

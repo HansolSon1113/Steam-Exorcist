@@ -13,13 +13,27 @@ MonoBehaviour:
   m_Name: SkillSO
   m_EditorClassIdentifier: 
   skills:
-  - name: 
-    cardSprite: {fileID: 0}
-    prefab: {fileID: 0}
+  - name: Skill1
+    cardSprite: {fileID: 7482667652216324306, guid: 4a76559d7c7cd4d65a3c37f704ed9b23, type: 3}
+    prefab: {fileID: 2587433902068127199, guid: e0823be180da0431cb091fa5c20bb68b, type: 3}
     damage:
-      minDamage: 0
-      maxDamage: 0
-      critChance: 0
-      critMultiplier: 0
-      armorPenetration: 0
-    ally: 0
+      minDamage: 1
+      maxDamage: 10
+      critChance: 50
+      critMultiplier: 2
+      armorPenetration: 5
+      ally: 0
+    speed: 0
+    projectile: 1
+  - name: Skill2
+    cardSprite: {fileID: 7482667652216324306, guid: 4a76559d7c7cd4d65a3c37f704ed9b23, type: 3}
+    prefab: {fileID: 2587433902068127199, guid: e0823be180da0431cb091fa5c20bb68b, type: 3}
+    damage:
+      minDamage: 1
+      maxDamage: 10
+      critChance: 50
+      critMultiplier: 2
+      armorPenetration: 5
+      ally: 0
+    speed: 0
+    projectile: 1

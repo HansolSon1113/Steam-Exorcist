@@ -1,6 +1,4 @@
-using System.Collections;
-using UnityEngine;
-
+[System.Serializable]
 public class Enemy : Entity
 {
     private AIController _aiController;
@@ -9,9 +7,7 @@ public class Enemy : Entity
     private bool _canAttack;
     private bool _playerFound = false;
 
-    public Health health { get; set; }
-    public int direction { get; set; }
-    public bool isFlying { get; set; }
+    public Damage damage;
     public AIController aiController { get; set; }
     public bool playerFound { get; set; }
     public bool canFly { get; set; }

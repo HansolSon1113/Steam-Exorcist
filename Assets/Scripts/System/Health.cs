@@ -1,9 +1,8 @@
 public class Health
 {
-    public int health { get; set; }
-    public int maxHealth { get; set; }
-
-    public Health(int health, int maxHealth)
+    public float health;
+    public float maxHealth;
+    public Health(float health, float maxHealth)
     {
         this.health = health;
         this.maxHealth = maxHealth;

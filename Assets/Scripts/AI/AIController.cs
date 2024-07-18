@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-    public Transform target;
+    private Transform target;
     private Coroutine searchCoroutine;
     public float speed = 5f;
     public Enemy enemy;
 
     void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         enemy = GetComponent<EnemyController>().enemy;
         enemy.aiController = this;
         searchCoroutine = StartCoroutine(Search());

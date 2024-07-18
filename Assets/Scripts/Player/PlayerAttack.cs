@@ -1,92 +1,72 @@
-// //Not Complete!
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
+//Not Complete!
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-// public class PlayerAttack : MonoBehaviour
-// {
-//     [SerializeField] SkillSO skillSO;
-//     private List<SkillElements> skillList = new List<SkillElements> { };
-//     private int i = -1;
-//     private Quaternion Q;
-//     CardManager cardManager = CardManager.Instance;
+public class PlayerAttack : MonoBehaviour
+{
+    public static PlayerAttack Instance { get; private set; }
+    void Awake() => Instance = this;
+    
+    private SkillElements skill;
+    CardManager cardManager;
+    [SerializeField] Transform player;
+    public Damage damage;
 
-//     public void Setup(int index)
-//     {
-//         StartCoroutine(SETUP(index));
-//     }
+    public void Setup(SkillElements _skill)
+    {
+        StartCoroutine(SETUP(_skill));
+    }
 
-//     private IEnumerator SETUP(int index)
-//     {
-//         yield return new WaitForSeconds(0.1f);
-//         i = index;
-//     }
+    private IEnumerator SETUP(SkillElements _skill)
+    {
+        yield return new WaitForSeconds(0.1f);
+        skill = _skill;
+    }
 
-//     private void Start()
-//     {
-//         foreach (var skill in skillSO.skills)
-//         {
-//             skillList.Add(skill);
-//         }
-//     }
+    private void Start()
+    {
+        cardManager = CardManager.Instance;
+    }
 
-//     private void Update()
-//     {
-//         if (Input.GetKeyDown(KeyCode.F) && i != -1)
-//         {
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && skill != null)
+        {
+            Attack();
+        }
+    }
 
-//         }
-//     }
+    public void Attack()
+    {
+        if (skill.damage.ally)
+        {
+            DoDamage.toTarget(Player.player, skill.damage);
+        }
+        else
+        {
+            damage = skill.damage;
+        }
 
-//     public void Attack()
-//     {
-//         if (skillList[i].ally)
-//         {
-//             Health.Inst.health -= skillList[i].damage;
-//         }
+        var skillObject = Instantiate(skill.prefab, transform.position, Quaternion.Euler(0f, 0f, 90 * Player.direction));
 
-//         if (Player.direction == 1 && !skillList[i].ally)
-//         {
-//             Q = Quaternion.Euler(0, 0, 180);
-//         }
-//         else
-//         {
-//             Q = Quaternion.Euler(0, 0, 0);
-//         }
+        GameObject[] children = new GameObject[skillObject.transform.childCount];
 
-//         var skill = Instantiate(skillList[i].prefab, transform.position, Q);
+        Destroy(skillObject, 3f);
+        cardManager.Rotate();
+        cardManager.indicatorSprite.sprite = null;
+        skill = null;
+    }
 
-//         GameObject[] children = new GameObject[skill.transform.childCount];
-
-//         for (int i = 0; i < skill.transform.childCount; i++)
-//         {
-//             skill.transform.GetChild(i).gameObject.GetComponent<AddForce>().Setup(skillList[i].damage);
-//         }
-
-//         Destroy(skill, 3f);
-//         i = -1;
-//         cardManager.rotate();
-//         cardManager.indicatorSprite.sprite = null;
-//     }
-
-//     private void OnTriggerEnter2D(Collider2D other)
-//     {
-//         if (other.gameObject.tag == "AISensor")
-//         {
-//             other.gameObject.GetComponent<AISensor>().Found();
-//         }
-//         if (other.gameObject.tag == "AISensor_Flying")
-//         {
-//             other.gameObject.GetComponent<AISensor_Flying>().Found();
-//         }
-//         if (other.gameObject.tag == "EnemyDamage")
-//         {
-//             Health.Inst.health -= 10;
-//         }
-//         if (other.gameObject.tag == "EnemyDamage_Range")
-//         {
-//             Health.Inst.health -= 10;
-//             Destroy(other.gameObject);
-//         }
-//     }
-// }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "AISensor")
+        {
+            other.gameObject.GetComponent<EnemyController>().playerFound = true;
+        }
+        if (other.gameObject.tag == "AISensor_Flying")
+        {
+            other.gameObject.GetComponent<EnemyController>().playerFound = true;
+        }
+    }
+}

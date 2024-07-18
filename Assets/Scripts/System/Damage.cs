@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 [System.Serializable]
 public class Damage
 {
@@ -9,4 +6,15 @@ public class Damage
     public float critChance;
     public float critMultiplier;
     public float armorPenetration;
+    public bool ally;
+
+    public Damage(int minDamage, int maxDamage, float critChance, float critMultiplier, float armorPenetration, bool ally)
+    {
+        this.minDamage = minDamage;
+        this.maxDamage = maxDamage;
+        this.critChance = critChance;
+        this.critMultiplier = critMultiplier;
+        this.armorPenetration = armorPenetration;
+        this.ally = ally;
+    }
 }

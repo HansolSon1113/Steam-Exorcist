@@ -7,7 +7,8 @@ public class SkillElements
     public Sprite cardSprite;
     public GameObject prefab;
     public Damage damage;
-    public bool ally;
+    public float speed;
+    public bool projectile;
 }
 
 [CreateAssetMenu(fileName = "SkillSO", menuName = "Scriptable Objects/SkillSO")]

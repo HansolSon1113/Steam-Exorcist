@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour, CameraController
 {
     public float horSpeed = 5f;
     public float vertSpeed = 5f;
+    public Transform playerTransform;
     [SerializeField] Rigidbody2D player;
     [SerializeField] Transform cameraArm;
     [SerializeField] float gravityAmount = 1f;
@@ -37,6 +38,14 @@ public class PlayerController : MonoBehaviour, CameraController
         else if (player.velocity.x < -horSpeed)
         {
             player.velocity = new Vector2(-5, player.velocity.y);
+        }
+        if(player.velocity.y > vertSpeed)
+        {
+            player.velocity = new Vector2(player.velocity.x, vertSpeed);
+        }
+        else if (player.velocity.y < -vertSpeed)
+        {
+            player.velocity = new Vector2(player.velocity.x, -vertSpeed);
         }
 
         if (Player.isFlying)

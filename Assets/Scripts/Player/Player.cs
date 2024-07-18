@@ -6,8 +6,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        player._health = new Health(100, 100);
-        player._isFlying = false;
+        player.health = new Health(100, 100);
+        player.isFlying = false;
     }
 
     public static PlayerController playerController;

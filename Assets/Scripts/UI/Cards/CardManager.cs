@@ -13,14 +13,15 @@ public class CardManager : MonoBehaviour
     public Transform cardRotation;
     private bool isRotating = false;
     private int i = 0;
-    [SerializeField] GameObject player;
     public float radius = 5f;
     public float cardDistance = 1.5f;
     private bool shouldRotate = true;
     private Coroutine rotationCoroutineInstance;
     public SpriteRenderer indicatorSprite;
+    [SerializeField] GameObject player;
+    PlayerAttack playerAttack;
 
-    public void rotate()
+    public void Rotate()
     {
         shouldRotate = true;
         isRotating = true;
@@ -34,47 +35,48 @@ public class CardManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        // if (!shouldRotate)
-        // {
-        //     yield break;
-        // }
+        if (!shouldRotate)
+        {
+            yield break;
+        }
 
-        // isRotating = true;
-        // yield return StartCoroutine(RotateCards(rotationSec));
-        // i = (i + 1) % skillList.Count;
+        isRotating = true;
+        yield return StartCoroutine(RotateCards(rotationSec));
+        i = (i + 1) % skillList.Count;
 
-        // rotationCoroutineInstance = null;
+        rotationCoroutineInstance = null;
     }
 
     private IEnumerator RotateCards(float duration)
     {
-        // float elapsedTime = 0f;
-        // float initialRotation = cardRotation.rotation.eulerAngles.z;
-        // float targetRotation = initialRotation + 360f / skillList.Count;
+        float elapsedTime = 0f;
+        float initialRotation = cardRotation.rotation.eulerAngles.z;
+        float targetRotation = initialRotation + 360f / skillList.Count;
 
-        // while (elapsedTime < duration)
-        // {
-        //     if (!shouldRotate)
-        //     {
-        //         yield break;
-        //     }
+        while (elapsedTime < duration)
+        {
+            if (!shouldRotate)
+            {
+                yield break;
+            }
 
-        //     float newZ = Mathf.LerpAngle(initialRotation, targetRotation, elapsedTime / duration);
-        //     cardRotation.rotation = Quaternion.Euler(0, 0, newZ);
-        //     elapsedTime += Time.deltaTime;
-        //     yield return null;
-        // }
+            float newZ = Mathf.LerpAngle(initialRotation, targetRotation, elapsedTime / duration);
+            cardRotation.rotation = Quaternion.Euler(0, 0, newZ);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
 
-        // cardRotation.rotation = Quaternion.Euler(0, 0, targetRotation);
-        // isRotating = false;
+        cardRotation.rotation = Quaternion.Euler(0, 0, targetRotation);
+        isRotating = false;
         yield return null;
     }
 
-    private void Start()
+    public void Setup()
     {
+        playerAttack = player.GetComponent<PlayerAttack>();
         if (skillList.Count != 0)
         {
-            rotate();
+            Rotate();
         }
     }
 
@@ -87,8 +89,7 @@ public class CardManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && !isRotating)
         {
-            Debug.Log(i);
-            //player.GetComponent<Fire>().Setup(i);
+            playerAttack.Setup(skillList[i]);
             shouldRotate = false;
             if (rotationCoroutineInstance != null)
             {
@@ -101,16 +102,5 @@ public class CardManager : MonoBehaviour
         {
             rotationCoroutineInstance = StartCoroutine(RotationCoroutine());
         }
-    }
-}
-
-public class CardRotation : SpawnCards
-{
-    CardManager cardManager = CardManager.Instance;
-
-    private void Start()
-    {
-        GetSkills(cardManager.skillSO, cardManager.skillList);
-        Spawn(cardManager.cardRotation, cardManager.cardPrefab, cardManager.skillList, cardManager.cardDistance);
     }
 }
