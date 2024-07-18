@@ -13,6 +13,7 @@ public class AICollision : MonoBehaviour
             if(enemy.health.health <= 0)
             {
                 Destroy(gameObject);
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
             }
         }
     }
