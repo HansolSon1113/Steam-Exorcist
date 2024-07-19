@@ -19,15 +19,14 @@ MonoBehaviour:
       direction: 1
       isFlying: 0
       damage:
-        minDamage: 0
-        maxDamage: 0
-        critChance: 0
-        critMultiplier: 0
-        armorPenetration: 0
+      - minDamage: 10
+        maxDamage: 20
+        critChance: 50
+        critMultiplier: 2
+        armorPenetration: 5
         ally: 0
+        prefab: {fileID: 2587433902068127199, guid: e0823be180da0431cb091fa5c20bb68b, type: 3}
       enemyIndicator: {fileID: 0}
     health: 50
     maxHealth: 50
-    enemyPrefab:
-      enemyPrefab: {fileID: 2060700857918524781, guid: d2b95fdfa58454d48b52365db79bbd94, type: 3}
-      enemyDamagePrefab: {fileID: 0}
+    prefab: {fileID: 2060700857918524781, guid: d2b95fdfa58454d48b52365db79bbd94, type: 3}

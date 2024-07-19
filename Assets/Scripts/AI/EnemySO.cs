@@ -7,7 +7,7 @@ public class EnemyElements
     public Enemy enemy;
     public float health;
     public float maxHealth;
-    public EnemyPrefab enemyPrefab;
+    public GameObject prefab;
 }
 
 [CreateAssetMenu(fileName = "EnemySO", menuName = "Scriptable Objects/EnemySO")]

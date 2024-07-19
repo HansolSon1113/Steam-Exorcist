@@ -388,7 +388,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &286627743
 MonoBehaviour:
@@ -403,11 +403,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horSpeed: 5
-  vertSpeed: 10
+  vertSpeed: 15
   playerTransform: {fileID: 286627746}
   player: {fileID: 286627742}
   cameraArm: {fileID: 519420032}
-  gravityAmount: 1
+  gravityAmount: 10
   cameraSpeed: 0.1
 --- !u!114 &286627744
 MonoBehaviour:
@@ -509,6 +509,7 @@ MonoBehaviour:
     critMultiplier: 0
     armorPenetration: 0
     ally: 0
+    prefab: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +856,7 @@ Transform:
   m_GameObject: {fileID: 1174911167}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.14, y: 3.7, z: 0}
+  m_LocalPosition: {x: 14.14, y: 7.93, z: 0}
   m_LocalScale: {x: 15, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1087,7 +1088,7 @@ Transform:
   m_GameObject: {fileID: 1833797823}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 4.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

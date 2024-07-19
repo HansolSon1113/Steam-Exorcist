@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EnemyController : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class EnemyController : MonoBehaviour
     }
 
     public Enemy enemy { get; set; }
-    public Damage damage { get; set; }
+    public List<Damage> damage { get; set; }
     public bool isFlying { get; set; }
     public bool playerFound { get; set; }
     public bool canFly { get; set; }

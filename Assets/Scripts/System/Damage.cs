@@ -1,3 +1,5 @@
+using UnityEngine;
+
 [System.Serializable]
 public class Damage
 {
@@ -7,6 +9,7 @@ public class Damage
     public float critMultiplier;
     public float armorPenetration;
     public bool ally;
+    public GameObject prefab;
 
     public Damage(int minDamage, int maxDamage, float critChance, float critMultiplier, float armorPenetration, bool ally)
     {

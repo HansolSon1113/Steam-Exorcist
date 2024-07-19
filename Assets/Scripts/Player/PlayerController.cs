@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour, CameraController
 {
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour, CameraController
     [SerializeField] float gravityAmount = 1f;
     public static float h, v;
     public float cameraSpeed = 1f;
+    private bool highJump = false;
 
     private void Start()
     {
@@ -20,7 +22,7 @@ public class PlayerController : MonoBehaviour, CameraController
     private void Update()
     {
         h = Input.GetAxis("Horizontal");
-        v = Input.GetAxisRaw("Vertical");
+        v = Input.GetAxisRaw("Jump");
 
         if (h != 0)
         {
@@ -39,27 +41,23 @@ public class PlayerController : MonoBehaviour, CameraController
         {
             player.velocity = new Vector2(-5, player.velocity.y);
         }
-        if(player.velocity.y > vertSpeed)
+        if (player.velocity.y > vertSpeed * 2)
         {
             player.velocity = new Vector2(player.velocity.x, vertSpeed);
         }
-        else if (player.velocity.y < -vertSpeed)
+        else if (player.velocity.y < -vertSpeed * 2)
         {
             player.velocity = new Vector2(player.velocity.x, -vertSpeed);
         }
 
-        if (Player.isFlying)
+        if (Player.isFlying && !highJump)
         {
             player.AddForce(Vector3.down * gravityAmount);
         }
-        else
+        else if(!Player.isFlying && v == 1)
         {
             player.AddForce(Vector3.up * v * vertSpeed, ForceMode2D.Impulse);
-        }
-
-        if (player.velocity.y > vertSpeed)
-        {
-            player.velocity = new Vector2(player.velocity.x, vertSpeed);
+            StartCoroutine(JumpHigher());
         }
 
         if (h < 0)
@@ -74,6 +72,17 @@ public class PlayerController : MonoBehaviour, CameraController
         }
 
         UpdateCameraPosition();
+    }
+
+    private IEnumerator JumpHigher()
+    {
+        highJump = true;
+        Player.isFlying = true;
+        yield return new WaitForSeconds(0.5f);
+        if (v != 1 || player.velocity.y <= 0)
+        {
+            highJump = false;
+        }
     }
 
     public void UpdateCameraPosition()
@@ -95,7 +104,7 @@ public class PlayerController : MonoBehaviour, CameraController
             cameraArm.position += new Vector3(0, cameraSpeed, 0);
         }
 
-        if(player.velocity.x == 0)
+        if (player.velocity.x == 0)
         {
             cameraArm.position = Vector3.MoveTowards(cameraArm.position, new Vector3(transform.position.x, cameraArm.position.y, cameraArm.position.z), Time.deltaTime * 5);
         }

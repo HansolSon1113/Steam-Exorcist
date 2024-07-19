@@ -22,11 +22,11 @@ public class PlayerCollision : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Jumpable")
-        {
-            Player.isFlying = true;
-        }
-    }
+    // private void OnCollisionExit2D(Collision2D other)
+    // {
+    //     if (other.gameObject.tag == "Jumpable")
+    //     {
+    //         Player.isFlying = true;
+    //     }
+    // }
 }

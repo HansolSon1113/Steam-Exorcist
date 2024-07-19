@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class Enemy : Entity
@@ -9,7 +10,7 @@ public class Enemy : Entity
     private bool _canAttack;
     private bool _playerFound = false;
 
-    public Damage damage;
+    public List<Damage> damage;
     public AIController aiController { get; set; }
     public bool playerFound { get; set; }
     public bool canFly { get; set; }
