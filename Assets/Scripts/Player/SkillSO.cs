@@ -1,11 +1,17 @@
 using UnityEngine;
 
 [System.Serializable]
-public class SkillElements
+public class SkillList
 {
     public string name;
     public Sprite cardSprite;
-    public GameObject prefab;
+    public SkillElements[] skill;
+}
+
+[System.Serializable]
+public class SkillElements
+{
+    public string name;
     public Damage damage;
     public float speed;
     public bool projectile;
@@ -14,5 +20,5 @@ public class SkillElements
 [CreateAssetMenu(fileName = "SkillSO", menuName = "Scriptable Objects/SkillSO")]
 public class SkillSO : ScriptableObject
 {
-    public SkillElements[] skills;
+    public SkillList[] skills;
 }

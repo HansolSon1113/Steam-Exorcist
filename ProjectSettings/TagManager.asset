@@ -7,6 +7,8 @@ TagManager:
   - Jumpable
   - Enemy
   - EnemySensor
+  - PlayerDamage
+  - EnemyDamage
   layers:
   - Default
   - TransparentFX

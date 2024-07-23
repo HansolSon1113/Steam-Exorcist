@@ -1,4 +1,3 @@
-//Not Complete!
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,21 +6,24 @@ public class PlayerAttack : MonoBehaviour
 {
     public static PlayerAttack Instance { get; private set; }
     void Awake() => Instance = this;
-    
+
     private SkillElements skill;
+    public List<int> skillValue = new List<int> { 0 };
     CardManager cardManager;
     [SerializeField] Transform player;
-    public Damage damage;
+    private Vector2 mouseLocation;
+    private bool isAttacking;
+    private float playerMouseAngle;
 
-    public void Setup(SkillElements _skill)
+    public void Setup(SkillList _skill)
     {
         StartCoroutine(SETUP(_skill));
     }
 
-    private IEnumerator SETUP(SkillElements _skill)
+    private IEnumerator SETUP(SkillList _skill)
     {
         yield return new WaitForSeconds(0.1f);
-        skill = _skill;
+        skill = _skill.skill[skillValue[0]];
     }
 
     private void Start()
@@ -31,24 +33,43 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+        mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         if (Input.GetKeyDown(KeyCode.F) && skill != null)
         {
-            Attack();
+            SkillAttack();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !isAttacking)
+        {
+            StartCoroutine(BasicAttack());
         }
     }
 
-    public void Attack()
+    public IEnumerator BasicAttack()
     {
-        if (skill.damage.ally)
+        isAttacking = true;
+        playerMouseAngle = Mathf.Atan2(mouseLocation.y - player.position.y, mouseLocation.x - player.position.x) * Mathf.Rad2Deg + 90;
+        var basicObject = Instantiate(PlayerController.damage.prefab, transform.position, Quaternion.Euler(0f, 0f, playerMouseAngle));
+        basicObject.GetComponent<Projectile_Example>().Setup(PlayerController.damage);
+        Destroy(basicObject, 1f);
+        yield return new WaitForSeconds(PlayerController.player.attackSpeed);
+        isAttacking = false;
+    }
+
+    public void SkillAttack()
+    {
+        if (skill.damage.self)
         {
-            DoDamage.toTarget(Player.player, skill.damage);
+            DoDamage.toTarget(PlayerController.player, skill.damage);
         }
         else
         {
-            damage = skill.damage;
+            playerMouseAngle = Mathf.Atan2(mouseLocation.y - player.position.y, mouseLocation.x - player.position.x) * Mathf.Rad2Deg + 90;
         }
 
-        var skillObject = Instantiate(skill.prefab, transform.position, Quaternion.Euler(0f, 0f, 90 * Player.direction));
+        var skillObject = Instantiate(skill.damage.prefab, transform.position, Quaternion.Euler(0f, 0f, playerMouseAngle));
+        skillObject.GetComponent<Projectile_Example>().Setup(skill.damage);
 
         GameObject[] children = new GameObject[skillObject.transform.childCount];
 
@@ -56,17 +77,5 @@ public class PlayerAttack : MonoBehaviour
         cardManager.Rotate();
         cardManager.indicatorSprite.sprite = null;
         skill = null;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "AISensor")
-        {
-            other.gameObject.GetComponent<EnemyController>().playerFound = true;
-        }
-        if (other.gameObject.tag == "AISensor_Flying")
-        {
-            other.gameObject.GetComponent<EnemyController>().playerFound = true;
-        }
     }
 }

@@ -7,4 +7,5 @@ public class Entity
     [HideInInspector] public Health health;
     public int direction; // 1 = right, -1 = left
     public bool isFlying;
+    public float attackSpeed;
 }

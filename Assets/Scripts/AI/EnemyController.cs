@@ -20,10 +20,4 @@ public class EnemyController : MonoBehaviour
     }
 
     public Enemy enemy { get; set; }
-    public List<Damage> damage { get; set; }
-    public bool isFlying { get; set; }
-    public bool playerFound { get; set; }
-    public bool canFly { get; set; }
-    public bool canMove { get; set; }
-    public bool canAttack { get; set; }
 }

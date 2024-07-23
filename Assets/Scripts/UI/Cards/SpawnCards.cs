@@ -3,15 +3,15 @@ using UnityEngine;
 
 public interface CardSpawn
 {
-    public void GetSkills(SkillSO skills, List<SkillElements> cardList);
-    public void Spawn(Transform cardRotation, GameObject cardPrefab, List<SkillElements> cardList, float cardDistance);
+    public void GetSkills(SkillSO skills, List<SkillList> cardList);
+    public void Spawn(Transform cardRotation, GameObject cardPrefab, List<SkillList> cardList, float cardDistance);
 }
 
 public class SpawnCards : MonoBehaviour, CardSpawn
 {
     CardManager cardManager;
 
-    public void GetSkills(SkillSO Skills, List<SkillElements> cardList)
+    public void GetSkills(SkillSO Skills, List<SkillList> cardList)
     {
         foreach (var card in Skills.skills)
         {
@@ -19,7 +19,7 @@ public class SpawnCards : MonoBehaviour, CardSpawn
         }
     }
 
-    public void Spawn(Transform cardRotation, GameObject cardPrefab, List<SkillElements> cardList, float cardDistance)
+    public void Spawn(Transform cardRotation, GameObject cardPrefab, List<SkillList> cardList, float cardDistance)
     {
         for (int i = 0; i < cardList.Count; i++)
         {

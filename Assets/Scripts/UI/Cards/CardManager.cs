@@ -9,7 +9,7 @@ public class CardManager : MonoBehaviour
     public float rotationSec = 0.3f;
     public SkillSO skillSO;
     public GameObject cardPrefab;
-    [HideInInspector] public List<SkillElements> skillList = new List<SkillElements> { };
+    [HideInInspector] public List<SkillList> skillList = new List<SkillList> { };
     public Transform cardRotation;
     private bool isRotating = false;
     private int i = 0;

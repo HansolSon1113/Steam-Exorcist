@@ -15,25 +15,16 @@ MonoBehaviour:
   skills:
   - name: Skill1
     cardSprite: {fileID: 7482667652216324306, guid: 4a76559d7c7cd4d65a3c37f704ed9b23, type: 3}
-    prefab: {fileID: 2587433902068127199, guid: e0823be180da0431cb091fa5c20bb68b, type: 3}
-    damage:
-      minDamage: 10
-      maxDamage: 20
-      critChance: 50
-      critMultiplier: 2
-      armorPenetration: 5
-      ally: 0
-    speed: 0
-    projectile: 1
-  - name: Skill2
-    cardSprite: {fileID: 7482667652216324306, guid: 4a76559d7c7cd4d65a3c37f704ed9b23, type: 3}
-    prefab: {fileID: 2587433902068127199, guid: e0823be180da0431cb091fa5c20bb68b, type: 3}
-    damage:
-      minDamage: 10
-      maxDamage: 20
-      critChance: 50
-      critMultiplier: 2
-      armorPenetration: 5
-      ally: 0
-    speed: 0
-    projectile: 1
+    skill:
+    - name: Skill1
+      damage:
+        minDamage: 10
+        maxDamage: 20
+        critChance: 10
+        critMultiplier: 3
+        armorPenetration: 5
+        self: 0
+        ignoreTerrain: 0
+        prefab: {fileID: 2587433902068127199, guid: e0823be180da0431cb091fa5c20bb68b, type: 3}
+      speed: 0
+      projectile: 1

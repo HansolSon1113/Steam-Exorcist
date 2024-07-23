@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private List<Damage> damage;
+    private EnemyController enemyController;
+    private bool isAttacking;
+
     void Start()
     {
-        
+        enemyController = GetComponent<EnemyController>();
+        damage = enemyController.enemy.damage;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if(enemyController.enemy.playerFound)
+        {
+            foreach(Damage damage in damage)
+            {
+                if(!isAttacking)
+                {
+                    StartCoroutine(Attack(damage));
+                }
+            }
+        }
+    }
+
+    private IEnumerator Attack(Damage damage)
+    {
+        isAttacking = true;
+        var attack = Instantiate(damage.prefab, transform.position, Quaternion.identity);
+        attack.GetComponent<Projectile_Gravity>().Setup(damage);
+        yield return new WaitForSeconds(enemyController.enemy.attackSpeed);
+        isAttacking = false;
     }
 }

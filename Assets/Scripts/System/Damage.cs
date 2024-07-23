@@ -8,7 +8,8 @@ public class Damage
     public float critChance;
     public float critMultiplier;
     public float armorPenetration;
-    public bool ally;
+    public bool self;
+    public bool ignoreTerrain;
     public GameObject prefab;
 
     public Damage(int minDamage, int maxDamage, float critChance, float critMultiplier, float armorPenetration, bool ally)
@@ -18,6 +19,6 @@ public class Damage
         this.critChance = critChance;
         this.critMultiplier = critMultiplier;
         this.armorPenetration = armorPenetration;
-        this.ally = ally;
+        this.self = self;
     }
 }

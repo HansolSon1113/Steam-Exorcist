@@ -7,7 +7,7 @@ public class CardElement : MonoBehaviour
     [SerializeField] SpriteRenderer sprite;
     public string name;
 
-    public void Setup(SkillElements card)
+    public void Setup(SkillList card)
     {
         this.name = card.name;
         this.sprite.sprite = card.cardSprite;
