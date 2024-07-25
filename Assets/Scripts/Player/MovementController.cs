@@ -62,12 +62,12 @@ public class MovementController : MonoBehaviour, CameraController
 
         if (h < 0)
         {
-            PlayerController.player.direction = -1;
+            PlayerController.player.direction = dir.left;
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else if (h > 0)
         {
-            PlayerController.player.direction = 1;
+            PlayerController.player.direction = dir.right;
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 

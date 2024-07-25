@@ -3,21 +3,21 @@ using System.Collections.Generic;
 
 public class EnemyController : MonoBehaviour
 {
-    private Enemy _enemy;
+    private EnemyValue _enemy;
 
     private void Awake()
     {
-        enemy = new Enemy();
+        enemy = new EnemyValue();
     }
 
-    public void Setup(Enemy enemy, float health, float maxHealth)
+    public void Setup(EnemyValue enemy, float health, float maxHealth, float barrier)
     {
         this.enemy = enemy;
-        enemy.health = new Health(health, maxHealth);
+        enemy.health = new Health(health, maxHealth, barrier);
         enemy.isFlying = false;
         enemy.playerFound = false;
         enemy.enemyIndicator = GetComponent<EnemyIndicator>();
     }
 
-    public Enemy enemy { get; set; }
+    public EnemyValue enemy { get; set; }
 }

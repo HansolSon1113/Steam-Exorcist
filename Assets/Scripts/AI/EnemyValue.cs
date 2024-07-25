@@ -2,12 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class Enemy : Entity
+public class EnemyValue : Entity
 {
     private AIController _aiController;
-    private bool _canFly;
-    private bool _canMove;
-    private bool _canAttack;
     private bool _playerFound = false;
 
     public List<Damage> damage;

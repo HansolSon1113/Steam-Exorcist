@@ -7,7 +7,7 @@ public class AIController : MonoBehaviour
     private Transform target;
     private Coroutine searchCoroutine;
     public float speed = 5f;
-    public Enemy enemy;
+    public EnemyValue enemy;
 
     void Start()
     {
@@ -47,11 +47,11 @@ public class AIController : MonoBehaviour
     {
         while (!enemy.playerFound)
         {
-            enemy.direction = -1;
+            enemy.direction = dir.left;
             yield return new WaitForSeconds(1f);
-            enemy.direction = 1;
+            enemy.direction = dir.right;
             yield return new WaitForSeconds(2f);
-            enemy.direction = -1;
+            enemy.direction = dir.left;
             yield return new WaitForSeconds(1f);
         }
 

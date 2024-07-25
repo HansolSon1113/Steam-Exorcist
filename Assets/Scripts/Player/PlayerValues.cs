@@ -11,4 +11,5 @@ public class PlayerValues
     public Damage damage;
     public float _health; //This is just for setup, use player.health
     public float _maxHealth;
+    public float barrier;
 }

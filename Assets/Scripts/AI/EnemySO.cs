@@ -4,9 +4,10 @@ using UnityEngine;
 public class EnemyElements
 {
     public string name;
-    public Enemy enemy;
+    public EnemyValue enemy;
     public float health;
     public float maxHealth;
+    public float barrier;
     public GameObject prefab;
 }
 
