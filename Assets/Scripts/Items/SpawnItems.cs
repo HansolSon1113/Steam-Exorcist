@@ -25,7 +25,6 @@ public class SpawnItems : MonoBehaviour
                     ItemController itemController = item.GetComponent<ItemController>();
                     itemController.Setup(itemElement);
                     items.Add(item);
-                    break;
                 }
             }
         }

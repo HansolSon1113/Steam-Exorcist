@@ -8,7 +8,11 @@ public class EnemyElements
     public float health;
     public float maxHealth;
     public float barrier;
+    public int scrapCount;
     public GameObject prefab;
+    public bool canMove;
+    public bool canFly;
+    public bool canAttack;
 }
 
 [CreateAssetMenu(fileName = "EnemySO", menuName = "Scriptable Objects/EnemySO")]

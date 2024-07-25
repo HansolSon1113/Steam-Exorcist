@@ -109,7 +109,13 @@ MonoBehaviour:
   enemy:
     armor: 0
     direction: 0
+    invDuration: 0
+    isInvincible: 0
     isFlying: 0
+    _canFly: 0
+    _canMove: 0
+    _canAttack: 0
+    attackSpeed: 0
     damage:
     - minDamage: 0
       maxDamage: 0
@@ -217,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88da119ad696a40a9b9ebb28f94d6917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrapPrefab: {fileID: 381795473121885941, guid: f48703dd8db844f9792ba0521b40b767, type: 3}
 --- !u!50 &7508360577538698554
 Rigidbody2D:
   serializedVersion: 4
