@@ -62,6 +62,10 @@ public class PlayerAttack : MonoBehaviour
         if (skill.damage.self)
         {
             DoDamage.toTarget(PlayerController.player, skill.damage);
+            if (!PlayerController.player.isInvincible)
+            {
+                StartCoroutine(PlayerController.Invincible());
+            }
         }
         else
         {

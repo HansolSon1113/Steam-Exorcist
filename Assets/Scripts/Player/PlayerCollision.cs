@@ -10,11 +10,20 @@ public class PlayerCollision : MonoBehaviour
         {
             other.GetComponentInParent<EnemyController>().enemy.playerFound = true;
         }
-        
+
         if (other.gameObject.tag == "EnemyDamage")
         {
             DoDamage.toTarget(PlayerController.player, other.GetComponent<Projectile_Gravity>().damage);
-            Debug.Log(PlayerController.player.health);
+            if (!PlayerController.player.isInvincible)
+            {
+                StartCoroutine(PlayerController.Invincible());
+            }
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Item")
+        {
+            ItemManager.playerItems.Add(other.gameObject.GetComponent<ItemController>().item);
             Destroy(other.gameObject);
         }
     }

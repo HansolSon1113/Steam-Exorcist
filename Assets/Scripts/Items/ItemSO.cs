@@ -4,7 +4,8 @@ using UnityEngine;
 public class ItemElements
 {
     public string name;
-    public GameObject prefab;
+    public GameObject fieldPrefab;
+    public GameObject uiPrefab;
 }
 
 [CreateAssetMenu(fileName = "ItemSO", menuName = "Scriptable Objects/ItemSO")]
