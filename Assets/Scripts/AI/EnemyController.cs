@@ -19,6 +19,11 @@ public class EnemyController : MonoBehaviour
         enemy.canAttack = canAttack;
         enemy.scrapCount = scrapCount;
         enemy.enemyIndicator = GetComponent<EnemyIndicator>();
+        enemy.aiController = GetComponent<AIController>();
+        enemy.canMove = canMove;
+        enemy.canFly = canFly;
+        enemy.canAttack = canAttack;
+        enemy.scrapCount = scrapCount;
     }
     
     public EnemyValue enemy { get; set; }

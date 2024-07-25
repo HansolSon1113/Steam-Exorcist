@@ -9,6 +9,8 @@ TagManager:
   - EnemySensor
   - PlayerDamage
   - EnemyDamage
+  - Terrain
+  - Item
   layers:
   - Default
   - TransparentFX

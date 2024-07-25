@@ -12,11 +12,11 @@ public class AICollision : MonoBehaviour
             DoDamage.toTarget(enemy, other.GetComponent<Projectile_Example>().damage);
             Destroy(other.gameObject);
             enemy.enemyIndicator.UpdateHealthBar(enemy.health);
-            if(enemy.health.health <= 0)
+            if (enemy.health.health <= 0)
             {
-                for(int i = 0; i < enemy.scrapCount; i++)
+                for (int i = 0; i < enemy.scrapCount; i++)
                 {
-                    var scrap = Instantiate(scrapPrefab, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+                    Instantiate(scrapPrefab, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
                 }
                 Destroy(gameObject);
             }

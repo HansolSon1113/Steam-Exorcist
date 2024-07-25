@@ -310,7 +310,6 @@ GameObject:
   - component: {fileID: 286627740}
   - component: {fileID: 286627747}
   - component: {fileID: 286627748}
-  - component: {fileID: 286627749}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Player
@@ -494,16 +493,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f68d658a73664114ab2d17ee1421742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   skillValue: 00000000
   player: {fileID: 286627746}
 --- !u!114 &286627748
 MonoBehaviour:
+=======
+  player: {fileID: 0}
+  damage:
+    minDamage: 0
+    maxDamage: 0
+    critChance: 0
+    critMultiplier: 0
+    armorPenetration: 0
+    ally: 0
+--- !u!95 &286627748
+Animator:
+  serializedVersion: 5
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286627738}
   m_Enabled: 1
+<<<<<<< Updated upstream
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af19b10cab32e48b6931703f8126cb8f, type: 3}
   m_Name: 
@@ -531,9 +545,6 @@ MonoBehaviour:
     _health: 4
     _maxHealth: 4
     barrier: 2
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
 =======
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: ed32f5fee5512514788703c19dd45658, type: 2}
@@ -547,21 +558,6 @@ MonoBehaviour:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
->>>>>>> Stashed changes
-=======
---- !u!114 &286627749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286627738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562db12ca790b46ea9ac0eb434b0e2f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>> Stashed changes
 >>>>>>> Stashed changes
 --- !u!1 &519420028
 GameObject:
@@ -706,10 +702,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heartPrefab: {fileID: 7778589860671148248, guid: b04d8b9ce238b448b9e51c3fd3116012, type: 3}
   heartBackground: {fileID: 7778589860671148248, guid: 570cac1514df44be3ac3733a76bd8a36, type: 3}
-  barrierPrefab: {fileID: 7778589860671148248, guid: 60737e590600543bb842500209e41a04, type: 3}
+  barrier: {fileID: 0}
   hearts: []
   heartsBackground: []
-  barriers: []
 --- !u!1 &1088257628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1176,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1433140970}
   - component: {fileID: 1433140969}
-  - component: {fileID: 1433140971}
   m_Layer: 0
   m_Name: ItemManager
   m_TagString: Untagged
@@ -1215,54 +1209,8 @@ Transform:
   m_LocalPosition: {x: 2.6740491, y: 6.826527, z: -0.20784703}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1650791459}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1433140971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433140968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4ea7edd4605a416196fc9c371af1b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemSO: {fileID: 11400000, guid: c47e731d8f96f4fb5be942c0169258c8, type: 2}
-  items: []
---- !u!1 &1650791458
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1650791459}
-  m_Layer: 0
-  m_Name: item1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1650791459
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650791458}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.88, y: -5.27, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1433140970}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1663137424
 GameObject:
@@ -1314,10 +1262,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heartPrefab: {fileID: 7778589860671148248, guid: b04d8b9ce238b448b9e51c3fd3116012, type: 3}
   heartBackground: {fileID: 7778589860671148248, guid: 570cac1514df44be3ac3733a76bd8a36, type: 3}
-  barrierPrefab: {fileID: 7778589860671148248, guid: 60737e590600543bb842500209e41a04, type: 3}
+  barrier: {fileID: 7778589860671148248, guid: 60737e590600543bb842500209e41a04, type: 3}
   hearts: []
   heartsBackground: []
-  barriers: []
 --- !u!1 &1833797823
 GameObject:
   m_ObjectHideFlags: 0

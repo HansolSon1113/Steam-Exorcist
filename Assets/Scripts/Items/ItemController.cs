@@ -14,8 +14,8 @@ public class ItemController : MonoBehaviour
 
     private void Start()
     {
-        float rotation = this.transform.rotation.z;
-        rb.AddForce(new Vector2(Mathf.Cos(rotation) * 10, Mathf.Sin(rotation) * 10), ForceMode2D.Impulse);
+        float rotation = transform.rotation.eulerAngles.z;
+        rb.AddForce(new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad)) * 10, ForceMode2D.Impulse);
     }
 
     private void FixedUpdate()
