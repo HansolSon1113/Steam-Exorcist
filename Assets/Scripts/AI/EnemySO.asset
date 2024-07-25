@@ -16,8 +16,13 @@ MonoBehaviour:
   - name: Enemy1
     enemy:
       armor: 10
-      direction: -1
+      direction: 1
+      invDuration: 0
+      isInvincible: 0
       isFlying: 0
+      _canFly: 1
+      _canMove: 1
+      _canAttack: 1
       attackSpeed: 1
       damage:
       - minDamage: 1
@@ -31,4 +36,9 @@ MonoBehaviour:
       enemyIndicator: {fileID: 0}
     health: 50
     maxHealth: 50
+    barrier: 0
+    scrapCount: 1
     prefab: {fileID: 2060700857918524781, guid: d2b95fdfa58454d48b52365db79bbd94, type: 3}
+    canMove: 0
+    canFly: 0
+    canAttack: 0
