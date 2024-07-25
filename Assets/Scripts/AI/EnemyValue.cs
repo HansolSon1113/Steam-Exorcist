@@ -13,5 +13,6 @@ public class EnemyValue : Entity
     public bool canFly { get; set; }
     public bool canMove { get; set; }
     public bool canAttack { get; set; }
+    public int scrapCount { get; set; }
     [HideInInspector] public EnemyIndicator enemyIndicator;
 }

@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1940852969424646464}
   - component: {fileID: 8621852517173091282}
   - component: {fileID: 4720038862017797769}
-  - component: {fileID: 2710593845887395394}
+  - component: {fileID: 6234678073133953720}
   m_Layer: 0
-  m_Name: Item
-  m_TagString: Item
+  m_Name: Scrap
+  m_TagString: Scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4811321, g: 0.33815417, b: 0.33815417, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -148,8 +148,8 @@ MonoBehaviour:
     name: 
     fieldPrefab: {fileID: 0}
     uiPrefab: {fileID: 0}
-  rb: {fileID: 2710593845887395394}
---- !u!50 &2710593845887395394
+  rb: {fileID: 6234678073133953720}
+--- !u!50 &6234678073133953720
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

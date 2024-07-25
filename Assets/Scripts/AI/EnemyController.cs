@@ -10,14 +10,16 @@ public class EnemyController : MonoBehaviour
         enemy = new EnemyValue();
     }
 
-    public void Setup(EnemyValue enemy, float health, float maxHealth, float barrier)
+    public void Setup(EnemyValue enemy, float health, float maxHealth, float barrier, bool canMove, bool canFly, bool canAttack, int scrapCount)
     {
         this.enemy = enemy;
         enemy.health = new Health(health, maxHealth, barrier);
-        enemy.isFlying = false;
-        enemy.playerFound = false;
+        enemy.canMove = canMove;
+        enemy.canFly = canFly;
+        enemy.canAttack = canAttack;
+        enemy.scrapCount = scrapCount;
         enemy.enemyIndicator = GetComponent<EnemyIndicator>();
     }
-
+    
     public EnemyValue enemy { get; set; }
 }
