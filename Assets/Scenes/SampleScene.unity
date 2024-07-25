@@ -493,16 +493,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f68d658a73664114ab2d17ee1421742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   skillValue: 00000000
   player: {fileID: 286627746}
 --- !u!114 &286627748
 MonoBehaviour:
+=======
+  player: {fileID: 0}
+  damage:
+    minDamage: 0
+    maxDamage: 0
+    critChance: 0
+    critMultiplier: 0
+    armorPenetration: 0
+    ally: 0
+--- !u!95 &286627748
+Animator:
+  serializedVersion: 5
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286627738}
   m_Enabled: 1
+<<<<<<< Updated upstream
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af19b10cab32e48b6931703f8126cb8f, type: 3}
   m_Name: 
@@ -530,6 +545,20 @@ MonoBehaviour:
     _health: 4
     _maxHealth: 4
     barrier: 2
+=======
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ed32f5fee5512514788703c19dd45658, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+>>>>>>> Stashed changes
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
