@@ -10,6 +10,7 @@ public class Damage
     public float armorPenetration;
     public bool self;
     public bool ignoreTerrain;
+    public bool isProjectile;
     public GameObject prefab;
 
     public Damage(int minDamage, int maxDamage, float critChance, float critMultiplier, float armorPenetration, bool ally)

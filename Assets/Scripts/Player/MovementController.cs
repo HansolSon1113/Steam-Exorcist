@@ -12,22 +12,17 @@ public class MovementController : MonoBehaviour, CameraController
     public float h, v;
     public float cameraSpeed = 1f;
     private bool highJump = false;
-    private Animator animator;
 
     private void Start()
     {
         player = GetComponent<Rigidbody2D>();
         PlayerController.movementController = this;
-        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxisRaw("Jump");
-        animator.SetBool("RunRight", false);
-        animator.SetBool("RunLeft", false);
-        animator.SetBool("isRun", false);
 
         if (h != 0)
         {
@@ -36,23 +31,14 @@ public class MovementController : MonoBehaviour, CameraController
         else
         {
             player.velocity = new Vector2(player.velocity.x * 0.1f, player.velocity.y);
-            animator.SetBool("RunRight", false);
-            animator.SetBool("RunLeft", false);
-            animator.SetBool("isRun", false);
         }
 
         if (player.velocity.x > horSpeed)
         {
-            animator.SetBool("RunRight", true);
-            animator.SetBool("RunLeft", false);
-            animator.SetBool("isRun", true);
             player.velocity = new Vector2(5, player.velocity.y);
         }
         else if (player.velocity.x < -horSpeed)
         {
-            animator.SetBool("RunLeft", true);
-            animator.SetBool("RunRight", false);
-            animator.SetBool("isRun", true);
             player.velocity = new Vector2(-5, player.velocity.y);
         }
         if (player.velocity.y > vertSpeed * 2)

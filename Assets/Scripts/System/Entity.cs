@@ -9,9 +9,9 @@ public class Entity
     public float invDuration;
     public bool isInvincible;
     public bool isFlying;
-    public bool _canFly;
-    public bool _canMove;
-    public bool _canAttack;
+    public bool canFly;
+    public bool canMove;
+    public bool canAttack;
     public float attackSpeed;
 }
 
