@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class EnemyController : MonoBehaviour
 {
     private EnemyValue _enemy;
+    [SerializeField] GameObject scrapPrefab;
 
     private void Awake()
     {
@@ -25,6 +26,18 @@ public class EnemyController : MonoBehaviour
         enemy.canAttack = canAttack;
         enemy.scrapCount = scrapCount;
     }
-    
+
+    private void FixedUpdate()
+    {
+        if (enemy.health.health <= 0)
+        {
+            for (int i = 0; i < enemy.scrapCount; i++)
+            {
+                Instantiate(scrapPrefab, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+            }
+            Destroy(gameObject);
+        }
+    }
+
     public EnemyValue enemy { get; set; }
 }

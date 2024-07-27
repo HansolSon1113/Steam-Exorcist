@@ -112,9 +112,9 @@ MonoBehaviour:
     invDuration: 0
     isInvincible: 0
     isFlying: 0
-    _canFly: 0
-    _canMove: 0
-    _canAttack: 0
+    canFly: 0
+    canMove: 0
+    canAttack: 0
     attackSpeed: 0
     damage:
     - minDamage: 0
@@ -124,6 +124,7 @@ MonoBehaviour:
       armorPenetration: 0
       self: 0
       ignoreTerrain: 0
+      isProjectile: 0
       prefab: {fileID: 0}
     - minDamage: 0
       maxDamage: 0
@@ -132,6 +133,7 @@ MonoBehaviour:
       armorPenetration: 0
       self: 0
       ignoreTerrain: 0
+      isProjectile: 0
       prefab: {fileID: 0}
     - minDamage: 0
       maxDamage: 0
@@ -140,6 +142,7 @@ MonoBehaviour:
       armorPenetration: 0
       self: 0
       ignoreTerrain: 0
+      isProjectile: 0
       prefab: {fileID: 0}
     - minDamage: 0
       maxDamage: 0
@@ -148,6 +151,7 @@ MonoBehaviour:
       armorPenetration: 0
       self: 0
       ignoreTerrain: 0
+      isProjectile: 0
       prefab: {fileID: 0}
     - minDamage: 0
       maxDamage: 0
@@ -156,6 +160,7 @@ MonoBehaviour:
       armorPenetration: 0
       self: 0
       ignoreTerrain: 0
+      isProjectile: 0
       prefab: {fileID: 0}
     - minDamage: 0
       maxDamage: 0
@@ -164,6 +169,7 @@ MonoBehaviour:
       armorPenetration: 0
       self: 0
       ignoreTerrain: 0
+      isProjectile: 0
       prefab: {fileID: 0}
     enemyIndicator: {fileID: 0}
 --- !u!61 &949567274837462467
@@ -223,7 +229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88da119ad696a40a9b9ebb28f94d6917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrapPrefab: {fileID: 381795473121885941, guid: 7f2daa43b7bcd486c9abe61acb6b58c7, type: 3}
 --- !u!50 &7508360577538698554
 Rigidbody2D:
   serializedVersion: 4
@@ -263,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2730fad06fc447eb31f7dd64e25f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrapPrefab: {fileID: 381795473121885941, guid: 7f2daa43b7bcd486c9abe61acb6b58c7, type: 3}
 --- !u!114 &5634758424379324313
 MonoBehaviour:
   m_ObjectHideFlags: 0
