@@ -13,6 +13,15 @@ public class MovementAnimationController : MonoBehaviour
 
     void Update()
     {
+        if(PlayerController.player.direction == dir.left)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if(PlayerController.player.direction == dir.right)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
         if (PlayerController.movementController.h == 0)
         {
             animator.SetBool("RunRight", false);
