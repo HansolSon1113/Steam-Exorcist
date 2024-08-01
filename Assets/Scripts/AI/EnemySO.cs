@@ -8,6 +8,10 @@ public class EnemyElements
     public float health;
     public float maxHealth;
     public float barrier;
+    public bool canMove;
+    public bool canFly;
+    public bool canAttack;
+    public int scrapCount;
     public GameObject prefab;
 }
 

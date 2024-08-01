@@ -35,7 +35,7 @@ public class HealthIndicator : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (PlayerController.player.health.health < hearts.Count)
         {

@@ -25,6 +25,7 @@ MonoBehaviour:
         armorPenetration: 5
         self: 0
         ignoreTerrain: 0
+        isProjectile: 0
         prefab: {fileID: 2587433902068127199, guid: e0823be180da0431cb091fa5c20bb68b, type: 3}
       speed: 0
       projectile: 1

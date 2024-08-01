@@ -41,20 +41,12 @@ public class MovementController : MonoBehaviour, CameraController
         {
             player.velocity = new Vector2(-5, player.velocity.y);
         }
-        if (player.velocity.y > vertSpeed * 2)
-        {
-            player.velocity = new Vector2(player.velocity.x, vertSpeed);
-        }
-        else if (player.velocity.y < -vertSpeed * 2)
-        {
-            player.velocity = new Vector2(player.velocity.x, -vertSpeed);
-        }
 
         if (PlayerController.player.isFlying && !highJump)
         {
             player.AddForce(Vector3.down * gravityAmount);
         }
-        else if(!PlayerController.player.isFlying && v == 1)
+        else if (!PlayerController.player.isFlying && v == 1)
         {
             player.AddForce(Vector3.up * v * vertSpeed, ForceMode2D.Impulse);
             StartCoroutine(JumpHigher());
@@ -63,12 +55,10 @@ public class MovementController : MonoBehaviour, CameraController
         if (h < 0)
         {
             PlayerController.player.direction = dir.left;
-            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else if (h > 0)
         {
             PlayerController.player.direction = dir.right;
-            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
         UpdateCameraPosition();
@@ -97,16 +87,16 @@ public class MovementController : MonoBehaviour, CameraController
         }
         if (cameraArm.position.y > transform.position.y + 2)
         {
-            cameraArm.position -= new Vector3(0, cameraSpeed, 0);
+            cameraArm.position -= new Vector3(0, cameraSpeed * (1 + Mathf.Abs(cameraArm.position.y - transform.position.y)) * 0.5f, 0);
         }
         else if (cameraArm.position.y < transform.position.y)
         {
-            cameraArm.position += new Vector3(0, cameraSpeed, 0);
+            cameraArm.position += new Vector3(0, cameraSpeed * (1 + Mathf.Abs(cameraArm.position.y - transform.position.y)) * 0.5f, 0);
         }
 
-        if (player.velocity.x == 0)
+        if (Mathf.Abs(player.velocity.x) <= 1)
         {
-            cameraArm.position = Vector3.MoveTowards(cameraArm.position, new Vector3(transform.position.x, cameraArm.position.y, cameraArm.position.z), Time.deltaTime * 5);
+            cameraArm.position = Vector3.MoveTowards(cameraArm.position, new Vector3(transform.position.x, cameraArm.position.y, cameraArm.position.z), Time.deltaTime * 5 * (1 + Mathf.Abs(cameraArm.position.x - transform.position.x)));
         }
         //cameraArm.position = new Vector3(transform.position.x, transform.position.y + 3, cameraArm.position.z);
     }

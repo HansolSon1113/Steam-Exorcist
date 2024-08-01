@@ -51,7 +51,10 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = true;
         playerMouseAngle = Mathf.Atan2(mouseLocation.y - player.position.y, mouseLocation.x - player.position.x) * Mathf.Rad2Deg + 90;
         var basicObject = Instantiate(PlayerController.damage.prefab, transform.position, Quaternion.Euler(0f, 0f, playerMouseAngle));
-        basicObject.GetComponent<Projectile_Example>().Setup(PlayerController.damage);
+        for (int i = 0; i < basicObject.transform.childCount; i++)
+        {
+            basicObject.transform.GetChild(i).gameObject.GetComponent<Projectile_Example>().Setup(PlayerController.damage);
+        }
         Destroy(basicObject, 1f);
         yield return new WaitForSeconds(PlayerController.player.attackSpeed);
         isAttacking = false;
@@ -73,7 +76,10 @@ public class PlayerAttack : MonoBehaviour
         }
 
         var skillObject = Instantiate(skill.damage.prefab, transform.position, Quaternion.Euler(0f, 0f, playerMouseAngle));
-        skillObject.GetComponent<Projectile_Example>().Setup(skill.damage);
+        for (int i = 0; i < skillObject.transform.childCount; i++)
+        {
+            skillObject.transform.GetChild(i).gameObject.GetComponent<Projectile_Example>().Setup(skill.damage);
+        }
 
         GameObject[] children = new GameObject[skillObject.transform.childCount];
 
