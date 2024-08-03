@@ -11,7 +11,7 @@ public class AIController : MonoBehaviour
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = PlayerController.movementController.playerTransform.transform;
         enemy = GetComponent<EnemyController>().enemy;
         enemy.aiController = this;
         searchCoroutine = StartCoroutine(Search());
