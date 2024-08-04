@@ -17,7 +17,7 @@ public class AIController : MonoBehaviour
         searchCoroutine = StartCoroutine(Search());
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (enemy.playerFound)
         {
@@ -50,8 +50,6 @@ public class AIController : MonoBehaviour
             enemy.direction = dir.left;
             yield return new WaitForSeconds(1f);
             enemy.direction = dir.right;
-            yield return new WaitForSeconds(2f);
-            enemy.direction = dir.left;
             yield return new WaitForSeconds(1f);
         }
 
