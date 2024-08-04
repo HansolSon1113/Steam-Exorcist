@@ -20,6 +20,9 @@ public class ItemController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity *= 0.9f;
+        if (rb.velocity.magnitude > 0f)
+        {
+            rb.velocity *= 0.9f;
+        }
     }
 }

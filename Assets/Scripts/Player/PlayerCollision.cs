@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    [SerializeField] HealthIndicator healthIndicator;
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "EnemySensor")
