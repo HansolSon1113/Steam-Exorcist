@@ -7,6 +7,7 @@ public class PlayerCollision : MonoBehaviour
         if (other.gameObject.tag == "EnemySensor")
         {
             other.GetComponentInParent<EnemyController>().enemy.playerFound = true;
+            other.GetComponentInParent<AIController>().aiSensor.isOn = false;
         }
 
         if (other.gameObject.tag == "EnemyDamage")
@@ -22,7 +23,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (((other.gameObject.tag == "Jumpable" && PlayerController.movementController.player.velocity.y == 0) || (other.gameObject.tag == "Enemy" && PlayerController.movementController.player.velocity.y < 0.2)) && PlayerController.movementController.v == 0)
+        if (((other.gameObject.tag == "Terrain" && PlayerController.movementController.player.velocity.y == 0) || (other.gameObject.tag == "Enemy" && PlayerController.movementController.player.velocity.y < 0.2)) && PlayerController.movementController.v == 0)
         {
             PlayerController.player.isFlying = false;
         }

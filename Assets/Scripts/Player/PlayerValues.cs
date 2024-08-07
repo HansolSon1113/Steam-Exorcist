@@ -11,7 +11,7 @@ public class PlayerValues
     public bool canMove { get; set; }
     public bool canFly { get; set; }
     public bool canAttack { get; set; }
-    public float attackSpeed { get; set; }
+    public float attackSpeed;
     public Damage damage;
     public float _health; //This is just for setup, use player.health
     public float _maxHealth;

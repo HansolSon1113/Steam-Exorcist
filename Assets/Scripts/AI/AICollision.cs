@@ -12,4 +12,17 @@ public class AICollision : MonoBehaviour
             enemy.enemyIndicator.UpdateHealthBar(enemy.health);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        var enemy = this.GetComponent<AIController>();
+        if (other.gameObject.tag == "Terrain")
+        {
+            Debug.Log(other.gameObject.name);
+            enemy.terrainTransform = other.gameObject.transform;
+            enemy.aiSensor.isOn = true;
+            enemy.maxX = enemy.aiSensor.maxX = enemy.terrainTransform.position.x + other.gameObject.GetComponent<BoxCollider2D>().size.x / 2f;
+            enemy.minX = enemy.aiSensor.minX = enemy.terrainTransform.position.x - other.gameObject.GetComponent<BoxCollider2D>().size.x / 2f;
+        }
+    }
 }
