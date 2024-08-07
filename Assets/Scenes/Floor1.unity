@@ -770,7 +770,7 @@ MonoBehaviour:
       canFly: 0
       canMove: 0
       canAttack: 0
-      attackSpeed: 0
+      attackSpeed: 1
     damage:
       minDamage: 1
       maxDamage: 1
@@ -2585,7 +2585,7 @@ MonoBehaviour:
   radius: 5
   cardDistance: 1.5
   indicatorSprite: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 646727290}
 --- !u!1 &1722545742
 GameObject:
   m_ObjectHideFlags: 0
