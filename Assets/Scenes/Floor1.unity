@@ -771,6 +771,7 @@ MonoBehaviour:
       canMove: 0
       canAttack: 0
       attackSpeed: 1
+    attackSpeed: 1
     damage:
       minDamage: 1
       maxDamage: 1
