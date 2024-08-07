@@ -13,7 +13,6 @@ public class MovementAnimationController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
         if(PlayerController.player.direction == dir.left)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
