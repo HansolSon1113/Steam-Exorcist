@@ -5,16 +5,18 @@ using UnityEngine;
 public class AIController : MonoBehaviour
 {
     private Transform target;
-    private Coroutine searchCoroutine;
+    public Transform aiTransform;
+    public AISensor aiSensor;
+    public Transform terrainTransform;
     public float speed = 5f;
     public EnemyValue enemy;
+    [SerializeField] Rigidbody2D rb;
 
     void Start()
     {
         target = PlayerController.movementController.playerTransform.transform;
         enemy = GetComponent<EnemyController>().enemy;
         enemy.aiController = this;
-        searchCoroutine = StartCoroutine(Search());
     }
 
     void FixedUpdate()
@@ -22,39 +24,35 @@ public class AIController : MonoBehaviour
         if (enemy.playerFound)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, target.position, speed * 5 * Time.deltaTime);
+            if(rb.velocity != Vector2.zero)
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
         else
         {
             this.transform.position += new Vector3(enemy.direction * speed * Time.deltaTime, 0, 0);
         }
 
-        if (enemy.playerFound && (target.position - this.transform.position).magnitude > 10f)
+        if (enemy.playerFound && ((target.position - this.transform.position).magnitude > 10f) || (terrainTransform != null && (this.transform.position.x < terrainTransform.position.x - terrainTransform.localScale.x / 2f + this.transform.localScale.x / 2 || this.transform.position.x > terrainTransform.position.x + terrainTransform.localScale.x / 2f - this.transform.localScale.x / 2)))
         {
             enemy.playerFound = false;
-            if (searchCoroutine == null)
-            {
-                searchCoroutine = StartCoroutine(Search());
-            }
         }
 
-        if (!enemy.playerFound && searchCoroutine == null)
+        if (!enemy.playerFound && terrainTransform != null)
         {
-            searchCoroutine = StartCoroutine(Search());
+            aiSensor.isOn = true;
+            Search();
         }
     }
 
-    private IEnumerator Search()
+    private void Search()
     {
-        while (!enemy.playerFound)
+        if (this.transform.position.x < terrainTransform.position.x - terrainTransform.localScale.x / 2f + this.transform.localScale.x / 2)
+        {
+            enemy.direction = dir.right;
+        }
+        else if (this.transform.position.x > terrainTransform.position.x + terrainTransform.localScale.x / 2f - this.transform.localScale.x / 2)
         {
             enemy.direction = dir.left;
-            yield return new WaitForSeconds(1f);
-            enemy.direction = dir.right;
-            yield return new WaitForSeconds(1f);
         }
-
-        searchCoroutine = null;
     }
-
-
 }
