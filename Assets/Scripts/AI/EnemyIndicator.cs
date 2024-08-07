@@ -6,6 +6,6 @@ public class EnemyIndicator : MonoBehaviour
 
     public void UpdateHealthBar(Health health)
     {
-        healthBar.localScale =  new Vector3(health.health / health.maxHealth, 0.2f, 0);
+        healthBar.localScale =  new Vector3(health.health / health.maxHealth, healthBar.localScale.y, 0);
     }
 }
