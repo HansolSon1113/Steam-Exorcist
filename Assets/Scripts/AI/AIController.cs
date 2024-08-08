@@ -4,33 +4,24 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-    private Transform target;
+    public Transform target;
     public Transform aiTransform;
     public AISensor aiSensor;
     public Transform terrainTransform;
     public float speed = 5f;
     public EnemyValue enemy;
-    [SerializeField] Rigidbody2D rb;
+    public Rigidbody2D rb;
     public float maxX, minX;
 
     void Start()
     {
         target = PlayerController.movementController.playerTransform.transform;
         enemy = GetComponent<EnemyController>().enemy;
-        enemy.aiController = this;
     }
 
     void FixedUpdate()
     {
-        if (enemy.playerFound)
-        {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, target.position, speed * 5 * Time.deltaTime);
-            if (rb.velocity != Vector2.zero)
-            {
-                rb.velocity = new Vector2(0, rb.velocity.y);
-            }
-        }
-        else
+        if(!enemy.playerFound)
         {
             this.transform.position += new Vector3(enemy.direction * speed * Time.deltaTime, 0, 0);
         }
@@ -51,11 +42,13 @@ public class AIController : MonoBehaviour
     {
         if (this.transform.position.x < minX + this.transform.localScale.x / 2)
         {
-            enemy.direction = dir.right;
+            enemy.direction = dir.left * dir.opposite;
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        else if (this.transform.position.x > maxX - this.transform.localScale.x / 2)
+        else if(this.transform.position.x > maxX - this.transform.localScale.x / 2)
         {
-            enemy.direction = dir.left;
+            enemy.direction = dir.right * dir.opposite;
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 }

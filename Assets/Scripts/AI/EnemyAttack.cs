@@ -6,7 +6,6 @@ public class EnemyAttack : MonoBehaviour
 {
     private List<Damage> damage;
     private EnemyController enemyController;
-    private bool isAttacking;
 
     void Start()
     {
@@ -16,11 +15,11 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
-        if(enemyController.enemy.playerFound)
+        if (enemyController.enemy.playerFound)
         {
-            foreach(Damage damage in damage)
+            foreach (Damage damage in damage)
             {
-                if(!isAttacking)
+                if (!enemyController.isAttacking)
                 {
                     StartCoroutine(Attack(damage));
                 }
@@ -30,10 +29,19 @@ public class EnemyAttack : MonoBehaviour
 
     private IEnumerator Attack(Damage damage)
     {
-        isAttacking = true;
-        var attack = Instantiate(damage.prefab, transform.position, Quaternion.identity);
-        attack.GetComponent<Projectile_Gravity>().Setup(damage);
+        if(enemyController.isAttacking)
+        {
+            yield break;
+        }
+        enemyController.isAttacking = true;
+        {
+            foreach(System.Action attack in enemyController.attackPattern)
+            {
+                Debug.Log(enemyController.enemy.attackSpeed);
+                attack();
+            }
+        }
         yield return new WaitForSeconds(enemyController.enemy.attackSpeed);
-        isAttacking = false;
+        enemyController.isAttacking = false;
     }
 }
