@@ -20,10 +20,17 @@ MonoBehaviour:
       invDuration: 0
       isInvincible: 0
       isFlying: 0
+<<<<<<< Updated upstream
       _canFly: 1
       _canMove: 1
       _canAttack: 1
       attackSpeed: 1
+=======
+      canFly: 0
+      canMove: 0
+      canAttack: 0
+      attackSpeed: 5
+>>>>>>> Stashed changes
       damage:
       - minDamage: 1
         maxDamage: 1
@@ -42,3 +49,8 @@ MonoBehaviour:
     canMove: 0
     canFly: 0
     canAttack: 0
+<<<<<<< Updated upstream
+=======
+    scrapCount: 1
+    prefab: {fileID: 2060700857918524781, guid: 12f825089c2324c33b387218a9847e3f, type: 3}
+>>>>>>> Stashed changes

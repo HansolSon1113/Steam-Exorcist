@@ -28,13 +28,13 @@ public class MovementAnimationController : MonoBehaviour
             animator.SetBool("RunLeft", false);
             animator.SetBool("isRun", false);
         }
-        else if (PlayerController.movementController.player.velocity.x >= PlayerController.movementController.horSpeed)
+        else if (PlayerController.movementController.player.velocity.x > 0)
         {
             animator.SetBool("RunRight", true);
             animator.SetBool("RunLeft", false);
             animator.SetBool("isRun", true);
         }
-        else if (PlayerController.movementController.player.velocity.x <= -PlayerController.movementController.horSpeed)
+        else if (PlayerController.movementController.player.velocity.x < 0)
         {
             animator.SetBool("RunLeft", true);
             animator.SetBool("RunRight", false);
