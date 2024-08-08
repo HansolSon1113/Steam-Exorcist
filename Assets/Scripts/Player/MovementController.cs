@@ -77,22 +77,27 @@ public class MovementController : MonoBehaviour, CameraController
 
     public void UpdateCameraPosition()
     {
+        Vector3 targetPosition = cameraArm.position;
+
         if (cameraArm.position.x > transform.position.x + 1)
         {
-            cameraArm.position -= new Vector3(cameraSpeed, 0, 0);
+            targetPosition.x -= cameraSpeed;
         }
         else if (cameraArm.position.x < transform.position.x - 1)
         {
-            cameraArm.position += new Vector3(cameraSpeed, 0, 0);
+            targetPosition.x += cameraSpeed;
         }
+
         if (cameraArm.position.y > transform.position.y + 2)
         {
-            cameraArm.position -= new Vector3(0, cameraSpeed * (1 + Mathf.Abs(cameraArm.position.y - transform.position.y)) * 0.5f, 0);
+            targetPosition.y -= cameraSpeed * (1 + Mathf.Abs(cameraArm.position.y - transform.position.y)) * 0.5f;
         }
         else if (cameraArm.position.y < transform.position.y)
         {
-            cameraArm.position += new Vector3(0, cameraSpeed * (1 + Mathf.Abs(cameraArm.position.y - transform.position.y)) * 0.5f, 0);
+            targetPosition.y += cameraSpeed * (1 + Mathf.Abs(cameraArm.position.y - transform.position.y)) * 0.5f;
         }
+
+        cameraArm.position = Vector3.Lerp(cameraArm.position, targetPosition, Time.deltaTime * 5);
 
         if (Mathf.Abs(player.velocity.x) <= 1)
         {

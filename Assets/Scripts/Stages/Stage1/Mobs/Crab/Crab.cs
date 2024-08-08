@@ -6,6 +6,7 @@ public class Crab : MonoBehaviour
 {
     private EnemyController enemyController;
     public float vertSpeed;
+    private bool alreadyAttacked;
 
     void Start()
     {
@@ -20,9 +21,20 @@ public class Crab : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        Debug.Log(alreadyAttacked);
+        if ((other.gameObject.CompareTag("PlayerHead") || other.gameObject.CompareTag("PlayerBody") || other.gameObject.CompareTag("PlayerFeet")) && alreadyAttacked == false)
         {
+            Debug.Log(other.gameObject.tag);
             DoDamage.toTarget(PlayerController.player, enemyController.enemy.damage[0]);
+            alreadyAttacked = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("PlayerHead") || other.gameObject.CompareTag("PlayerBody") || other.gameObject.CompareTag("PlayerFeet"))
+        {
+            alreadyAttacked = false;
         }
     }
 }
