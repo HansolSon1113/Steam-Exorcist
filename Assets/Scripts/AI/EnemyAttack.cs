@@ -33,15 +33,16 @@ public class EnemyAttack : MonoBehaviour
         {
             yield break;
         }
+        enemyController.isWalking = false;
         enemyController.isAttacking = true;
         {
             foreach(System.Action attack in enemyController.attackPattern)
             {
-                Debug.Log(enemyController.enemy.attackSpeed);
                 attack();
             }
         }
         yield return new WaitForSeconds(enemyController.enemy.attackSpeed);
         enemyController.isAttacking = false;
+        enemyController.isWalking = true;
     }
 }

@@ -23,7 +23,7 @@ MonoBehaviour:
       canFly: 0
       canMove: 0
       canAttack: 0
-      attackSpeed: 1
+      attackSpeed: 5
       damage:
       - minDamage: 1
         maxDamage: 1
@@ -42,4 +42,4 @@ MonoBehaviour:
     canFly: 0
     canAttack: 0
     scrapCount: 1
-    prefab: {fileID: 2060700857918524781, guid: b53acbac4312b4ab284f63e74eb1ac93, type: 3}
+    prefab: {fileID: 2060700857918524781, guid: 12f825089c2324c33b387218a9847e3f, type: 3}
