@@ -11,7 +11,17 @@ public class Crab : MonoBehaviour
     void Start()
     {
         enemyController = GetComponent<EnemyController>();
-        enemyController.attackPattern.Add(() => enemyController.enemy.aiController.rb.AddForce(Vector2.right * 10 * enemyController.enemy.direction, ForceMode2D.Impulse));
+        enemyController.attackPattern.Add(Attack);
+    }
+
+    void Attack()
+    {
+        Invoke("AttackDetail", 1f);
+    }
+
+    void AttackDetail()
+    {
+        enemyController.enemy.aiController.rb.AddForce(Vector2.right * 10 * enemyController.enemy.direction, ForceMode2D.Impulse);
     }
 
     private void Jump()
@@ -21,7 +31,6 @@ public class Crab : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log(alreadyAttacked);
         if ((other.gameObject.CompareTag("PlayerHead") || other.gameObject.CompareTag("PlayerBody") || other.gameObject.CompareTag("PlayerFeet")) && alreadyAttacked == false)
         {
             Debug.Log(other.gameObject.tag);

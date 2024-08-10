@@ -18,11 +18,11 @@ public class AICollision : MonoBehaviour
         var enemy = this.GetComponent<AIController>();
         if (other.gameObject.tag == "Terrain")
         {
-            Debug.Log(other.gameObject.name);
             enemy.terrainTransform = other.gameObject.transform;
             enemy.aiSensor.isOn = true;
             enemy.maxX = enemy.aiSensor.maxX = enemy.terrainTransform.position.x + other.gameObject.GetComponent<BoxCollider2D>().size.x / 2f;
             enemy.minX = enemy.aiSensor.minX = enemy.terrainTransform.position.x - other.gameObject.GetComponent<BoxCollider2D>().size.x / 2f;
+            this.GetComponent<EnemyController>().isWalking = true;
         }
     }
 }
