@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class MovementController : MonoBehaviour, CameraController
 {
@@ -12,11 +13,17 @@ public class MovementController : MonoBehaviour, CameraController
     public float h, v;
     public float cameraSpeed = 1f;
     private bool highJump = false;
+    public bool cameraAttached;
+    private Action cameraUpdateFunction;
+    private Vector3 cameraVelocity = Vector3.zero;
+    [SerializeField] Vector3 cameraOffset = new Vector3(0, 1, -10);
+    [SerializeField] float aheadDistance = 2f;
 
     private void Start()
     {
         player = GetComponent<Rigidbody2D>();
         PlayerController.movementController = this;
+        cameraUpdateFunction = cameraAttached ? UpdateCameraAttached : UpdateCameraUnAttached;
     }
 
     private void Update()
@@ -77,32 +84,21 @@ public class MovementController : MonoBehaviour, CameraController
 
     public void UpdateCameraPosition()
     {
-        Vector3 targetPosition = cameraArm.position;
+        cameraUpdateFunction();
+    }
 
-        if (cameraArm.position.x > transform.position.x + 1)
-        {
-            targetPosition.x -= cameraSpeed;
-        }
-        else if (cameraArm.position.x < transform.position.x - 1)
-        {
-            targetPosition.x += cameraSpeed;
-        }
-
-        if (cameraArm.position.y > transform.position.y + 2)
-        {
-            targetPosition.y -= cameraSpeed * (1 + Mathf.Abs(cameraArm.position.y - transform.position.y)) * 0.5f;
-        }
-        else if (cameraArm.position.y < transform.position.y)
-        {
-            targetPosition.y += cameraSpeed * (1 + Mathf.Abs(cameraArm.position.y - transform.position.y)) * 0.5f;
-        }
-
-        cameraArm.position = Vector3.Lerp(cameraArm.position, targetPosition, Time.deltaTime * 5);
-
-        if (Mathf.Abs(player.velocity.x) <= 1)
-        {
-            cameraArm.position = Vector3.MoveTowards(cameraArm.position, new Vector3(transform.position.x, cameraArm.position.y, cameraArm.position.z), Time.deltaTime * 5 * (1 + Mathf.Abs(cameraArm.position.x - transform.position.x)));
-        }
-        //cameraArm.position = new Vector3(transform.position.x, transform.position.y + 3, cameraArm.position.z);
+    private void UpdateCameraUnAttached()
+    {
+        float speedFactor = Mathf.Abs(player.velocity.x) / horSpeed;
+        float dynamicAheadDistance = aheadDistance * speedFactor;
+        Vector3 aheadOffset = new Vector3(dynamicAheadDistance * PlayerController.player.direction, 0, 0);
+        Vector3 targetPosition = playerTransform.position + cameraOffset + aheadOffset;
+        targetPosition.y += 1;
+        Vector3 smoothedPosition = Vector3.SmoothDamp(cameraArm.position, targetPosition, ref cameraVelocity, 0.3f);
+        cameraArm.position = smoothedPosition;
+    }
+    private void UpdateCameraAttached()
+    {
+        cameraArm.position = playerTransform.position + cameraOffset;
     }
 }

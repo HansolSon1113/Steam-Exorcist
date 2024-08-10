@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovementAnimationController : MonoBehaviour
 {
     private Animator animator;
+    private bool landed;
 
     void Start()
     {
@@ -39,6 +40,33 @@ public class MovementAnimationController : MonoBehaviour
             animator.SetBool("RunLeft", true);
             animator.SetBool("RunRight", false);
             animator.SetBool("isRun", true);
+        }
+    
+        if(PlayerController.player.isFlying == true && landed == false)
+        {
+            animator.SetBool("Flying", true);
+        }
+        else
+        {
+            animator.SetBool("Flying", false);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Terrain")
+        {
+            landed = true;
+            animator.SetBool("Landed", true);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Terrain")
+        {
+            landed = false;
+            animator.SetBool("Landed", false);
         }
     }
 }
