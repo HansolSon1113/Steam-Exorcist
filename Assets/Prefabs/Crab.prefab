@@ -114,72 +114,7 @@ MonoBehaviour:
   aiSensor: {fileID: 8630448914059987322}
   terrainTransform: {fileID: 0}
   speed: 1
-  enemy:
-    armor: 0
-    direction: 0
-    invDuration: 0
-    isInvincible: 0
-    isFlying: 0
-    canFly: 0
-    canMove: 0
-    canAttack: 0
-    attackSpeed: 0
-    damage:
-    - minDamage: 0
-      maxDamage: 0
-      critChance: 0
-      critMultiplier: 0
-      armorPenetration: 0
-      self: 0
-      ignoreTerrain: 0
-      isProjectile: 0
-      prefab: {fileID: 0}
-    - minDamage: 0
-      maxDamage: 0
-      critChance: 0
-      critMultiplier: 0
-      armorPenetration: 0
-      self: 0
-      ignoreTerrain: 0
-      isProjectile: 0
-      prefab: {fileID: 0}
-    - minDamage: 0
-      maxDamage: 0
-      critChance: 0
-      critMultiplier: 0
-      armorPenetration: 0
-      self: 0
-      ignoreTerrain: 0
-      isProjectile: 0
-      prefab: {fileID: 0}
-    - minDamage: 0
-      maxDamage: 0
-      critChance: 0
-      critMultiplier: 0
-      armorPenetration: 0
-      self: 0
-      ignoreTerrain: 0
-      isProjectile: 0
-      prefab: {fileID: 0}
-    - minDamage: 0
-      maxDamage: 0
-      critChance: 0
-      critMultiplier: 0
-      armorPenetration: 0
-      self: 0
-      ignoreTerrain: 0
-      isProjectile: 0
-      prefab: {fileID: 0}
-    - minDamage: 0
-      maxDamage: 0
-      critChance: 0
-      critMultiplier: 0
-      armorPenetration: 0
-      self: 0
-      ignoreTerrain: 0
-      isProjectile: 0
-      prefab: {fileID: 0}
-    enemyIndicator: {fileID: 0}
+  enemyController: {fileID: 0}
   rb: {fileID: 7508360577538698554}
   maxX: 0
   minX: 0
@@ -236,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrapPrefab: {fileID: 381795473121885941, guid: 7f2daa43b7bcd486c9abe61acb6b58c7, type: 3}
   isAttacking: 0
+  isWalking: 0
 --- !u!114 &5634758424379324313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +263,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02, y: 0.02}
+  m_Offset: {x: -0.02, y: 0.04}
   m_Size: {x: 1.1600001, y: 0.5}
   m_Direction: 1
 --- !u!114 &5198074404163464458
