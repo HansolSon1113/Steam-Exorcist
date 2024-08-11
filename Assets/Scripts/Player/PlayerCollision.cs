@@ -23,9 +23,10 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (((other.gameObject.tag == "Terrain" && PlayerController.movementController.player.velocity.y == 0) || (other.gameObject.tag == "Enemy" && PlayerController.movementController.player.velocity.y < 0.2)) && PlayerController.movementController.v == 0)
+        if (((other.gameObject.tag == "Terrain" || other.gameObject.tag == "Enemy") && PlayerController.movementController.player.velocity.y == 0) && PlayerController.movementController.v == 0)
         {
             PlayerController.player.isFlying = false;
+            PlayerController.movementController.player.velocity = new Vector2(PlayerController.movementController.player.velocity.x, 0);
         }
 
         if (other.gameObject.tag == "Item")
