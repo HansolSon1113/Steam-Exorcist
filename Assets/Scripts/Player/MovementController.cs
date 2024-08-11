@@ -51,7 +51,7 @@ public class MovementController : MonoBehaviour, CameraController
 
         if (PlayerController.player.isFlying && !highJump)
         {
-            player.AddForce(Vector3.down * gravityAmount);
+            player.AddForce(Vector3.down * gravityAmount * Time.deltaTime);
         }
         else if (!PlayerController.player.isFlying && v == 1)
         {
