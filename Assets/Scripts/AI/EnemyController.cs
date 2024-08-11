@@ -5,6 +5,9 @@ public class EnemyController : MonoBehaviour
 {
     private EnemyValue _enemy;
     [SerializeField] GameObject scrapPrefab;
+    public List<System.Action> attackPattern = new List<System.Action>();
+    public bool isAttacking;
+    public bool isWalking;
 
     private void Awake()
     {

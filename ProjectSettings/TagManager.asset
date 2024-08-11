@@ -11,6 +11,10 @@ TagManager:
   - EnemyDamage
   - Terrain
   - Item
+  - Scrap
+  - PlayerHead
+  - PlayerBody
+  - PlayerFeet
   layers:
   - Default
   - TransparentFX

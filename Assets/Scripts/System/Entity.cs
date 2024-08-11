@@ -20,4 +20,5 @@ public class dir
 {
     public const int right = 1;
     public const int left = -1;
+    public const int opposite = -1;
 }
