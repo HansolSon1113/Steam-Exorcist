@@ -4,7 +4,7 @@ using UnityEngine;
 public class SkillList
 {
     public string name;
-    public Sprite cardSprite;
+    public Sprite indicatorSprite;
     public SkillElements[] skill;
 }
 
@@ -14,7 +14,6 @@ public class SkillElements
     public string name;
     public Damage damage;
     public float speed;
-    public bool projectile;
 }
 
 [CreateAssetMenu(fileName = "SkillSO", menuName = "Scriptable Objects/SkillSO")]
