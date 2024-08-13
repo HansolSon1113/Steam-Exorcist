@@ -3,28 +3,62 @@ using UnityEngine;
 
 public class SkillCardRotation : MonoBehaviour
 {
-    public float rotationSpeed = 30f;  // 1/12 ¹ÙÄû(30µµ)¸¦ È¸ÀüÇÏ´Â µ¥ °É¸®´Â ½Ã°£ (ÃÊ´ç È¸Àü °¢µµ)
-    public float rotationInterval = 0.5f;  // 0.5ÃÊ¸¶´Ù È¸Àü
+    public static SkillCardRotation Instance { get; private set; }
+    void Awake() => Instance = this;
+
+    public float rotationSpeed = 30f;  // 1/12 ï¿½ï¿½ï¿½ï¿½(30ï¿½ï¿½)ï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ (ï¿½Ê´ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+    public float rotationInterval = 0.5f;  // 0.5ï¿½Ê¸ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
 
     private float targetAngle;
     private float currentAngle;
+    public bool isRotating = false;
+    public bool shouldRotate = true;
+    // public Coroutine rotationCoroutineInstance = null;
 
-    void Start()
+    public void Setup()
     {
-        // ÃÊ±â °ª ¼³Á¤
+        // ï¿½Ê±ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         currentAngle = transform.eulerAngles.z;
-        targetAngle = currentAngle + 30f; // 1/12 ¹ÙÄû (30µµ)
-        StartCoroutine(RotateSprite());
+        targetAngle = currentAngle + 30f; // 1/12 ï¿½ï¿½ï¿½ï¿½ (30ï¿½ï¿½)
+        Rotate();
+    }
+
+    public void Rotate()
+    {
+        if (!isRotating)
+        {
+            shouldRotate = true;
+            isRotating = true;
+            // if (rotationCoroutineInstance == null)
+            // {
+                // rotationCoroutineInstance = 
+                StartCoroutine(RotationCoroutine());
+            // }
+        }
+    }
+
+    public IEnumerator RotationCoroutine()
+    {
+        yield return new WaitForSeconds(rotationInterval);
+        if (!shouldRotate)
+        {
+            yield break;
+        }
+
+        isRotating = true;
+        yield return StartCoroutine(RotateSprite());
+        SkillManager.Instance.i = (SkillManager.Instance.i + 1) % SkillManager.Instance.skillList.Count;
+
+        // rotationCoroutineInstance = null;
     }
 
     private IEnumerator RotateSprite()
     {
-        while (true)
+        for (int i = 0; i < 3; i++)
         {
-            yield return new WaitForSeconds(rotationInterval);
-            targetAngle = currentAngle + 30f; // 1/12 ¹ÙÄû(30µµ)
+            targetAngle = currentAngle + 30f; // 1/12 ï¿½ï¿½ï¿½ï¿½(30ï¿½ï¿½)
 
-            // È¸Àü ½ÇÇà
+            // È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, targetAngle)) > 0.01f)
             {
                 currentAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
@@ -33,6 +67,12 @@ public class SkillCardRotation : MonoBehaviour
             }
 
             currentAngle = targetAngle;
+            if (i < 2)
+            {
+                yield return new WaitForSeconds(rotationInterval);
+            }
         }
+        isRotating = false;
+        yield return null;
     }
 }

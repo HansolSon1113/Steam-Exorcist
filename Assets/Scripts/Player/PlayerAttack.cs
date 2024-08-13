@@ -7,9 +7,9 @@ public class PlayerAttack : MonoBehaviour
     public static PlayerAttack Instance { get; private set; }
     void Awake() => Instance = this;
 
-    private SkillElements skill;
+    public SkillElements skill;
     public List<int> skillValue = new List<int> { 0 };
-    CardManager cardManager;
+    SkillManager skillManager;
     [SerializeField] Transform player;
     private Vector2 mouseLocation;
     private bool isAttacking;
@@ -17,6 +17,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void Setup(SkillList _skill)
     {
+        SkillCardRotation.Instance.isRotating = true;
         StartCoroutine(SETUP(_skill));
     }
 
@@ -28,7 +29,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        cardManager = CardManager.Instance;
+        skillManager = SkillManager.Instance;
+        skill = null;
     }
 
     private void Update()
@@ -84,8 +86,9 @@ public class PlayerAttack : MonoBehaviour
         GameObject[] children = new GameObject[skillObject.transform.childCount];
 
         Destroy(skillObject, 3f);
-        cardManager.Rotate();
-        cardManager.indicatorSprite.sprite = null;
         skill = null;
+        StartCoroutine(SkillCardRotation.Instance.RotationCoroutine());
+        SkillCardRotation.Instance.shouldRotate = true;
+        skillManager.indicatorSprite.sprite = null;
     }
 }

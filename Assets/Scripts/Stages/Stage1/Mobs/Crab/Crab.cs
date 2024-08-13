@@ -16,7 +16,7 @@ public class Crab : MonoBehaviour
 
     void Attack()
     {
-        Invoke("AttackDetail", 1f);
+        Invoke("AttackDetail", 2f);
     }
 
     void AttackDetail()
