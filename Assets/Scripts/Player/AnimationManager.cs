@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementAnimationController : MonoBehaviour
+public class AnimationManager : MonoBehaviour
 {
     private Animator animator;
     private bool landed;
@@ -49,6 +49,15 @@ public class MovementAnimationController : MonoBehaviour
         else
         {
             animator.SetBool("Flying", false);
+        }
+
+        if(PlayerController.player.isDefending == true)
+        {
+            animator.SetBool("Defend", true);
+        }
+        else
+        {
+            animator.SetBool("Defend", false);
         }
     }
 

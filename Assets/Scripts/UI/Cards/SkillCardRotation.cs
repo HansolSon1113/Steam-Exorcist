@@ -20,40 +20,23 @@ public class SkillCardRotation : MonoBehaviour
         // �ʱ� �� ����
         currentAngle = transform.eulerAngles.z;
         targetAngle = currentAngle + 30f; // 1/12 ���� (30��)
-        Rotate();
-    }
-
-    public void Rotate()
-    {
-        if (!isRotating)
-        {
-            shouldRotate = true;
-            isRotating = true;
-            // if (rotationCoroutineInstance == null)
-            // {
-                // rotationCoroutineInstance = 
-                StartCoroutine(RotationCoroutine());
-            // }
-        }
+        StartCoroutine(RotationCoroutine());
     }
 
     public IEnumerator RotationCoroutine()
     {
         yield return new WaitForSeconds(rotationInterval);
-        if (!shouldRotate)
+        if(shouldRotate)
         {
-            yield break;
+            yield return StartCoroutine(RotateSprite());
         }
 
-        isRotating = true;
-        yield return StartCoroutine(RotateSprite());
         SkillManager.Instance.i = (SkillManager.Instance.i + 1) % SkillManager.Instance.skillList.Count;
-
-        // rotationCoroutineInstance = null;
     }
 
     private IEnumerator RotateSprite()
     {
+        isRotating = true;
         for (int i = 0; i < 3; i++)
         {
             targetAngle = currentAngle + 30f; // 1/12 ����(30��)
@@ -73,6 +56,6 @@ public class SkillCardRotation : MonoBehaviour
             }
         }
         isRotating = false;
-        yield return null;
+        StartCoroutine(RotationCoroutine());
     }
 }
