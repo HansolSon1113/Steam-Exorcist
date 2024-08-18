@@ -7,7 +7,9 @@ public class Entity
     [HideInInspector] public Health health;
     public int direction; // dir.left, dir.right
     public float invDuration;
+    public float defDuration;
     public bool isInvincible;
+    public bool isDefending;
     public bool isFlying;
     public bool canFly;
     public bool canMove;

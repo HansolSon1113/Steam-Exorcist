@@ -12,18 +12,21 @@ public class PlayerCollision : MonoBehaviour
 
         if (other.gameObject.tag == "EnemyDamage")
         {
-            DoDamage.toTarget(PlayerController.player, other.GetComponent<Projectile_Gravity>().damage);
+            DoDamage.toTarget(PlayerController.player, other.GetComponent<EnemyDamage>().damage);
             if (!PlayerController.player.isInvincible)
             {
-                StartCoroutine(PlayerController.Invincible());
+                StartCoroutine(PlayerDefend.Invincible());
             }
-            Destroy(other.gameObject);
+            if(other.GetComponent<EnemyDamage>().damage.isProjectile)
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (((other.gameObject.tag == "Terrain" && PlayerController.movementController.player.velocity.y == 0) || (other.gameObject.tag == "Enemy" && PlayerController.movementController.player.velocity.y < 0.1f)) && PlayerController.movementController.v == 0)
+        if (((other.gameObject.tag == "Terrain" && PlayerController.movementController.player.velocity.y == 0) || (other.gameObject.tag == "Enemy" && Mathf.Abs(PlayerController.movementController.player.velocity.y)< 0.08f)) && PlayerController.movementController.v == 0)
         {
             PlayerController.player.isFlying = false;
             PlayerController.movementController.player.velocity = new Vector2(PlayerController.movementController.player.velocity.x, 0);

@@ -8,10 +8,12 @@ public class EnemyController : MonoBehaviour
     public List<System.Action> attackPattern = new List<System.Action>();
     public bool isAttacking;
     public bool isWalking;
+    public AIController aiController;
 
     private void Awake()
     {
         enemy = new EnemyValue();
+        aiController = GetComponent<AIController>();
     }
 
     public void Setup(EnemyValue enemy, float health, float maxHealth, float barrier, bool canMove, bool canFly, bool canAttack, int scrapCount)
@@ -23,7 +25,6 @@ public class EnemyController : MonoBehaviour
         enemy.canAttack = canAttack;
         enemy.scrapCount = scrapCount;
         enemy.enemyIndicator = GetComponent<EnemyIndicator>();
-        enemy.aiController = GetComponent<AIController>();
         enemy.canMove = canMove;
         enemy.canFly = canFly;
         enemy.canAttack = canAttack;

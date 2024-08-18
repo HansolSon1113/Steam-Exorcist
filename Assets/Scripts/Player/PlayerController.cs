@@ -22,12 +22,5 @@ public class PlayerController : MonoBehaviour
         player.health = new Health(playerValues._health, playerValues._maxHealth, playerValues.barrier);
     }
 
-    public static IEnumerator Invincible()
-    {
-        player.isInvincible = true;
-        yield return new WaitForSeconds(player.invDuration);
-        player.isInvincible = false;
-    }
-
     public static Entity player { get; set; }
 }

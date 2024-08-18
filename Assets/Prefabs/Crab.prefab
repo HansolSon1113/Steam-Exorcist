@@ -43,6 +43,7 @@ Transform:
   - {fileID: 3982182608126741084}
   - {fileID: 3991361860243696792}
   - {fileID: 6809532632884034587}
+  - {fileID: 295638629308008999}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2715663516960546985
@@ -172,6 +173,7 @@ MonoBehaviour:
   scrapPrefab: {fileID: 381795473121885941, guid: 7f2daa43b7bcd486c9abe61acb6b58c7, type: 3}
   isAttacking: 0
   isWalking: 0
+  aiController: {fileID: 0}
 --- !u!114 &5634758424379324313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertSpeed: 5
+  enemyDamage: {fileID: 2122969606631032805}
+  enemyDamageObject: {fileID: 6566885259460583251}
 --- !u!95 &4227389625708468706
 Animator:
   serializedVersion: 5
@@ -264,7 +268,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.02, y: 0.04}
-  m_Size: {x: 1.1600001, y: 0.5}
+  m_Size: {x: 1, y: 0.5}
   m_Direction: 1
 --- !u!114 &5198074404163464458
 MonoBehaviour:
@@ -369,7 +373,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.333}
+  m_Size: {x: 1.2, y: 0.333}
   m_EdgeRadius: 0
 --- !u!1 &3572780047247546051
 GameObject:
@@ -455,6 +459,96 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6566885259460583251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 295638629308008999}
+  - component: {fileID: 6351664893111754650}
+  - component: {fileID: 2122969606631032805}
+  m_Layer: 0
+  m_Name: DamageArea
+  m_TagString: EnemyDamage
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &295638629308008999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6566885259460583251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1775030139747751475}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &6351664893111754650
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6566885259460583251}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.02, y: 0.04}
+  m_Size: {x: 1, y: 0.5}
+  m_Direction: 1
+--- !u!114 &2122969606631032805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6566885259460583251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550fd4e98f0aa40899040f2b2e369ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    minDamage: 0
+    maxDamage: 0
+    critChance: 0
+    critMultiplier: 0
+    armorPenetration: 0
+    self: 0
+    ignoreTerrain: 0
+    isProjectile: 0
+    prefab: {fileID: 0}
 --- !u!1 &7454693330644644027
 GameObject:
   m_ObjectHideFlags: 0

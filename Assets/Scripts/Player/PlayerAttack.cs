@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour
     public static PlayerAttack Instance { get; private set; }
     void Awake() => Instance = this;
 
-    public SkillElements skill;
+    private SkillElements skill;
     public List<int> skillValue = new List<int> { 0 };
     SkillManager skillManager;
     [SerializeField] Transform player;
@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
 
     private IEnumerator SETUP(SkillList _skill)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(SkillCardRotation.Instance.rotationInterval);
         skill = _skill.skill[skillValue[0]];
     }
 
@@ -37,12 +37,12 @@ public class PlayerAttack : MonoBehaviour
     {
         mouseLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.F) && skill != null)
+        if (Input.GetKey(KeySettings.skillAttackKey) && skill != null)
         {
             SkillAttack();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !isAttacking)
+        if (Input.GetKey(KeySettings.basicAttackKey) && !isAttacking)
         {
             StartCoroutine(BasicAttack());
         }
@@ -69,7 +69,7 @@ public class PlayerAttack : MonoBehaviour
             DoDamage.toTarget(PlayerController.player, skill.damage);
             if (!PlayerController.player.isInvincible)
             {
-                StartCoroutine(PlayerController.Invincible());
+                StartCoroutine(PlayerDefend.Invincible());
             }
         }
         else
