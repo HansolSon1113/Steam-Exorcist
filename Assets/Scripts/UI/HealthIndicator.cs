@@ -51,24 +51,27 @@ public class HealthIndicator : MonoBehaviour
         // 하트 상태 업데이트
         for (int i = 0; i < heartsBackground.Count; i++)
         {
+            int heartIndex = heartsBackground.Count - 1 - i; // 인덱스를 반대로 변경
+
             if (i < currentHealth)
             {
                 // 정상 상태의 조각 활성화, 회색 조각 비활성화
-                for (int j = 0; j < heartPiecesList[i].Count; j++)
+                for (int j = 0; j < heartPiecesList[heartIndex].Count; j++)
                 {
-                    heartPiecesList[i][j].SetActive(true);
-                    heartPiecesGrayList[i][j].SetActive(false);
+                    heartPiecesList[heartIndex][j].SetActive(true);
+                    heartPiecesGrayList[heartIndex][j].SetActive(false);
                 }
             }
             else
             {
                 // 정상 상태의 조각 비활성화, 회색 조각 활성화
-                for (int j = 0; j < heartPiecesList[i].Count; j++)
+                for (int j = 0; j < heartPiecesList[heartIndex].Count; j++)
                 {
-                    heartPiecesList[i][j].SetActive(false);
-                    heartPiecesGrayList[i][j].SetActive(true);
+                    heartPiecesList[heartIndex][j].SetActive(false);
+                    heartPiecesGrayList[heartIndex][j].SetActive(true);
                 }
             }
         }
     }
+
 }

@@ -26,7 +26,7 @@ public class SkillCardRotation : MonoBehaviour
     public IEnumerator RotationCoroutine()
     {
         yield return new WaitForSeconds(rotationInterval);
-        if(shouldRotate)
+        if (shouldRotate)
         {
             yield return StartCoroutine(RotateSprite());
         }
