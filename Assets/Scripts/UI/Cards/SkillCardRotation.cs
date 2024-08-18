@@ -73,6 +73,7 @@ public class SkillCardRotation : MonoBehaviour
             }
         }
         isRotating = false;
+        Rotate();
         yield return null;
     }
 }
