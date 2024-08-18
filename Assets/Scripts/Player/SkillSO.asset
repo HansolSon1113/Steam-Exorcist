@@ -14,18 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills:
   - name: Skill1
-    cardSprite: {fileID: 7482667652216324306, guid: 4a76559d7c7cd4d65a3c37f704ed9b23, type: 3}
+    indicatorSprite: {fileID: 7482667652216324306, guid: 4a76559d7c7cd4d65a3c37f704ed9b23, type: 3}
     skill:
     - name: Skill1
       damage:
         minDamage: 10
         maxDamage: 20
-        critChance: 10
-        critMultiplier: 3
-        armorPenetration: 5
+        critChance: 30
+        critMultiplier: 1
+        armorPenetration: 0
         self: 0
         ignoreTerrain: 0
-        isProjectile: 0
+        isProjectile: 1
         prefab: {fileID: 2587433902068127199, guid: e0823be180da0431cb091fa5c20bb68b, type: 3}
       speed: 0
-      projectile: 1

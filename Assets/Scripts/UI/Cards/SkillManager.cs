@@ -26,14 +26,14 @@ public class SkillManager : MonoBehaviour
         SkillCardRotation.Instance.Setup();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (skillList.Count != 0)
         {
             indicatorSprite.sprite = skillList[i].indicatorSprite;
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && !SkillCardRotation.Instance.isRotating)
+        if (Input.GetKey(KeySettings.skillAttackKey) && !SkillCardRotation.Instance.isRotating)
         {
             playerAttack.Setup(skillList[i]);
             SkillCardRotation.Instance.shouldRotate = false;
