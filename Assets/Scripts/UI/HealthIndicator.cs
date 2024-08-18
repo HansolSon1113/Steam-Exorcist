@@ -25,9 +25,9 @@ public class HealthIndicator : MonoBehaviour
             List<GameObject> pieces = new List<GameObject>();
             for (int j = 0; j < heartPiecePrefabs.Length; j++)
             {
-                GameObject piece = Instantiate(heartPiecePrefabs[j], heartBg.transform.position, Quaternion.identity);
-                piece.transform.SetParent(heartBg.transform);
-                pieces.Add(piece);
+                GameObject piece = Instantiate(heartPiecePrefabs[j], heartBg.transform);
+                piece.transform.localPosition = Vector3.zero;
+                pieces.Add(piece);  // 리스트에 추가
             }
             heartPiecesList.Add(pieces);
 
@@ -35,16 +35,14 @@ public class HealthIndicator : MonoBehaviour
             List<GameObject> piecesGray = new List<GameObject>();
             for (int j = 0; j < heartPieceGrayPrefabs.Length; j++)
             {
-                GameObject pieceGray = Instantiate(heartPieceGrayPrefabs[j], heartBg.transform.position, Quaternion.identity);
-                pieceGray.transform.SetParent(heartBg.transform);
-                pieceGray.SetActive(false);
-                piecesGray.Add(pieceGray);
+                GameObject pieceGray = Instantiate(heartPieceGrayPrefabs[j], heartBg.transform);
+                pieceGray.transform.localPosition = Vector3.zero;
+                pieceGray.SetActive(false);  // 회색 조각은 초기 상태에서는 비활성화
+                piecesGray.Add(pieceGray);  // 리스트에 추가
             }
             heartPiecesGrayList.Add(piecesGray);
         }
     }
-
-
 
     private void FixedUpdate()
     {
@@ -73,5 +71,4 @@ public class HealthIndicator : MonoBehaviour
             }
         }
     }
-
 }
