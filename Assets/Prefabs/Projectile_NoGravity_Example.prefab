@@ -141,7 +141,7 @@ MonoBehaviour:
     ignoreTerrain: 0
     isProjectile: 0
     prefab: {fileID: 0}
-  speed: 10
+  speed: 10000
 --- !u!50 &4282790851128781652
 Rigidbody2D:
   serializedVersion: 4

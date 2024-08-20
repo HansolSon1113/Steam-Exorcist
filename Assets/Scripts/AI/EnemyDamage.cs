@@ -6,17 +6,19 @@ public class EnemyDamage : MonoBehaviour
 {
     [HideInInspector] public Damage damage;
     AIController aiController;
-    [SerializeField] float knockBackForce;
 
     private void Start()
     {
-        aiController = gameObject.transform.GetComponentInParent<EnemyController>().aiController;
+        if (!damage.isProjectile)
+        {
+            aiController = gameObject.transform.GetComponentInParent<EnemyController>().aiController;
+        }
     }
 
     private IEnumerator RestoreVelocity()
     {
         float elapsedTime = 0f;
-        float duration = 0.25f;
+        float duration = 0.5f;
         Vector2 initialVelocity = aiController.rb.velocity;
         Vector2 targetVelocity = Vector2.zero;
 
@@ -33,7 +35,7 @@ public class EnemyDamage : MonoBehaviour
     public void KnockBack(int direction, float force)
     {
         aiController.rb.velocity = Vector2.zero;
-        aiController.rb.AddForce(((Vector2.right* direction) + Vector2.up) * force * knockBackForce, ForceMode2D.Impulse);
+        aiController.rb.AddForce(((Vector2.right * direction) + Vector2.up) * force, ForceMode2D.Impulse);
         StartCoroutine(RestoreVelocity());
     }
 }

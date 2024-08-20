@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 9182323757678601425}
   - component: {fileID: 7434161919883031150}
   - component: {fileID: 8004310548520812706}
-  - component: {fileID: 5818799731759663966}
+  - component: {fileID: 8347389256426827118}
+  - component: {fileID: 5022185140188294809}
   m_Layer: 0
-  m_Name: Projectile_NoGravity_Example 1
-  m_TagString: PlayerDamage
+  m_Name: Lantern_Fireball
+  m_TagString: EnemyDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.5, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.45000002, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -159,7 +160,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5818799731759663966
+--- !u!114 &8347389256426827118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +169,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2587433902068127199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca96144066ac44290bee98caf1f5006e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ca25e64d59b84af7b1fedb451aa49c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1500
+--- !u!114 &5022185140188294809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2587433902068127199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550fd4e98f0aa40899040f2b2e369ddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage:
@@ -181,4 +195,3 @@ MonoBehaviour:
     ignoreTerrain: 0
     isProjectile: 0
     prefab: {fileID: 0}
-  speed: 10000
