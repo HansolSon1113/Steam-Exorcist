@@ -63,7 +63,7 @@ public class AnimationManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Terrain")
+        if(other.gameObject.tag == "Terrain" || other.gameObject.tag == "Ground")
         {
             landed = true;
             animator.SetBool("Landed", true);

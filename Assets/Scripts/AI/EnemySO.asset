@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: EnemySO
   m_EditorClassIdentifier: 
   enemies:
-  - name: Crab
+  - name: Crab1
     enemy:
       armor: 10
-      direction: -1
+      direction: 1
       invDuration: 0
       defDuration: 0
       isInvincible: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   - name: Lantern
     enemy:
       armor: 10
-      direction: -1
+      direction: 1
       invDuration: 0
       defDuration: 0
       isInvincible: 0
@@ -77,3 +77,35 @@ MonoBehaviour:
     canAttack: 0
     scrapCount: 1
     prefab: {fileID: 2060700857918524781, guid: c26070421d5fb45169cada0661a6cf1a, type: 3}
+  - name: Crab2
+    enemy:
+      armor: 10
+      direction: 1
+      invDuration: 0
+      defDuration: 0
+      isInvincible: 0
+      isDefending: 0
+      isFlying: 0
+      canFly: 0
+      canMove: 0
+      canAttack: 0
+      attackSpeed: 4
+      damage:
+      - minDamage: 1
+        maxDamage: 1
+        critChance: 0
+        critMultiplier: 0
+        armorPenetration: 0
+        self: 0
+        ignoreTerrain: 0
+        isProjectile: 0
+        prefab: {fileID: 0}
+      enemyIndicator: {fileID: 0}
+    health: 50
+    maxHealth: 50
+    barrier: 0
+    canMove: 0
+    canFly: 0
+    canAttack: 0
+    scrapCount: 1
+    prefab: {fileID: 2060700857918524781, guid: 12f825089c2324c33b387218a9847e3f, type: 3}

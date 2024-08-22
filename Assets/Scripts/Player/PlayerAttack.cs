@@ -53,12 +53,8 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = true;
         playerMouseAngle = Mathf.Atan2(mouseLocation.y - player.position.y, mouseLocation.x - player.position.x) * Mathf.Rad2Deg + 90;
         var basicObject = Instantiate(PlayerController.damage.prefab, transform.position, Quaternion.Euler(0f, 0f, playerMouseAngle));
-        for (int i = 0; i < basicObject.transform.childCount; i++)
-        {
-            basicObject.transform.GetChild(i).gameObject.GetComponent<Projectile_Example>().Setup(PlayerController.damage);
-        }
         Destroy(basicObject, 1f);
-        yield return new WaitForSeconds(PlayerController.player.attackSpeed);
+        yield return new WaitForSeconds(PlayerController.player.attackCooldown);
         isAttacking = false;
     }
 

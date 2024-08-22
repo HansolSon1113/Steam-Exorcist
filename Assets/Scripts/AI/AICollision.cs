@@ -7,7 +7,7 @@ public class AICollision : MonoBehaviour
         if (other.gameObject.tag == "PlayerDamage")
         {
             var enemy = GetComponent<EnemyController>().enemy;
-            DoDamage.toTarget(enemy, other.GetComponent<Projectile_Example>().damage);
+            DoDamage.toTarget(enemy, other.GetComponent<EnemyDamage>().damage);
             if (other.GetComponent<Projectile_Example>().damage.isProjectile)
             {
                 Destroy(other.gameObject);
@@ -26,6 +26,10 @@ public class AICollision : MonoBehaviour
             enemy.maxX = enemy.aiSensor.maxX = enemy.terrainTransform.position.x + other.gameObject.GetComponent<BoxCollider2D>().size.x / 2f;
             enemy.minX = enemy.aiSensor.minX = enemy.terrainTransform.position.x - other.gameObject.GetComponent<BoxCollider2D>().size.x / 2f;
             this.GetComponent<EnemyController>().isWalking = true;
+        }
+        else if(other.gameObject.tag == "Enemy")
+        {
+            this.GetComponent<EnemyController>().enemy.direction *= -1;
         }
     }
 }

@@ -16,6 +16,7 @@ TagManager:
   - PlayerBody
   - PlayerFeet
   - PlayerShield
+  - Ground
   layers:
   - Default
   - TransparentFX
