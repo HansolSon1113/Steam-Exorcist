@@ -4106,6 +4106,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8346993561260856375, guid: 79f44aa7c55f4c74993ef36bd9ce29fa, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d273a43f1a46d9b4f8a6bb1a6863d922, type: 3}
+    - target: {fileID: 8346993561260856375, guid: 79f44aa7c55f4c74993ef36bd9ce29fa, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4221,7 +4229,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6550321880093989243, guid: 7e996d7c96346234496379e249452d73, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c6f6c5d3b19174b43b2cc9880c7880ac, type: 3}
+    - target: {fileID: 6550321880093989243, guid: 7e996d7c96346234496379e249452d73, type: 3}
       propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550321880093989243, guid: 7e996d7c96346234496379e249452d73, type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7880424257057267563, guid: 7e996d7c96346234496379e249452d73, type: 3}
@@ -4713,7 +4729,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4588481793706555918, guid: 3fe7bb023d9ad3e4fb2fd7d7e4225133, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1f532039aa843d748a4f239c851365b0, type: 3}
+    - target: {fileID: 4588481793706555918, guid: 3fe7bb023d9ad3e4fb2fd7d7e4225133, type: 3}
       propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4588481793706555918, guid: 3fe7bb023d9ad3e4fb2fd7d7e4225133, type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4857,7 +4881,15 @@ PrefabInstance:
     m_TransformParent: {fileID: 1778320823}
     m_Modifications:
     - target: {fileID: 244091278164266895, guid: ad5ac98396bce4d478e16a2a6f2fe3fd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3532154ef1aeb034bb6548bc51a91827, type: 3}
+    - target: {fileID: 244091278164266895, guid: ad5ac98396bce4d478e16a2a6f2fe3fd, type: 3}
       propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 244091278164266895, guid: ad5ac98396bce4d478e16a2a6f2fe3fd, type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 358155665773600685, guid: ad5ac98396bce4d478e16a2a6f2fe3fd, type: 3}
