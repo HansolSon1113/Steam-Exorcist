@@ -10,7 +10,6 @@ public class PlayerDefendShield : MonoBehaviour
     {
         if(other.gameObject.tag == "EnemyDamage")
         {
-            Debug.Log("Shield hit");
             EnemyDamage enemyDamage = other.gameObject.GetComponent<EnemyDamage>();
             if(enemyDamage.damage.isProjectile)
             {

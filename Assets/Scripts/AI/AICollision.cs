@@ -8,7 +8,10 @@ public class AICollision : MonoBehaviour
         {
             var enemy = GetComponent<EnemyController>().enemy;
             DoDamage.toTarget(enemy, other.GetComponent<Projectile_Example>().damage);
-            Destroy(other.gameObject);
+            if (other.GetComponent<Projectile_Example>().damage.isProjectile)
+            {
+                Destroy(other.gameObject);
+            }
             enemy.enemyIndicator.UpdateHealthBar(enemy.health);
         }
     }

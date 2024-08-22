@@ -15,6 +15,13 @@ public class AISensor : MonoBehaviour
         orgScale = transform.localScale;
     }
 
+    private void RestoreTransform()
+    {
+        int dir = (transform.position.x > aiController.terrainTransform.position.x) ? 1 : -1;
+        transform.position += new Vector3((aiController.aiTransform.position.x - transform.position.x) * dir * Time.deltaTime, 0, 0);
+        transform.localScale += new Vector3((orgScale.x - this.transform.localScale.x) * Time.deltaTime, 0, 0);
+    }
+
     private void FixedUpdate()
     {
         if (isOn)
@@ -33,10 +40,9 @@ public class AISensor : MonoBehaviour
             }
             else
             {
-                if((transform.position.x < maxX - orgScale.x && transform.position.x > minX + orgScale.x) && transform.localScale != orgScale)
+                if (transform.localScale.x < orgScale.x)
                 {
-                    transform.localScale = orgScale;
-                    transform.position = aiController.aiTransform.position;
+                    RestoreTransform();
                 }
             }
         }

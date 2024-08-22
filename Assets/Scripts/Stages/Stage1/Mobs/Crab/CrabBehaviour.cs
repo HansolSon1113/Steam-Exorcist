@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crab : MonoBehaviour
+public class CrabBehaviour : MonoBehaviour
 {
     private EnemyController enemyController;
     public float vertSpeed;
@@ -27,16 +27,14 @@ public class Crab : MonoBehaviour
 
     void Attack()
     {
-        Invoke("AttackDetail", 2f);
+        int playerDirection = (PlayerController.movementController.playerTransform.position.x >= enemyController.aiController.aiTransform.position.x) ? 1 : -1;
+        enemyController.enemy.direction = playerDirection;
+        StartCoroutine(AttackDetail(playerDirection));
     }
 
-    void AttackDetail()
+    private IEnumerator AttackDetail(int playerDirection)
     {
-        enemyController.aiController.rb.AddForce(Vector2.right * 10 * enemyController.enemy.direction, ForceMode2D.Impulse);
-    }
-
-    private void Jump()
-    {
-        enemyController.aiController.rb.AddForce(Vector2.up * vertSpeed, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(2f);
+        enemyController.aiController.rb.AddForce(Vector2.right * 10 * playerDirection, ForceMode2D.Impulse);
     }
 }
