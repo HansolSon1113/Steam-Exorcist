@@ -13,6 +13,12 @@ public class LanternBehaviour : MonoBehaviour
         enemyController.attackPattern.Add(Attack);
     }
 
+    private void FixedUpdate()
+    {
+        enemyController.aiController.rb.velocity = new Vector2(0, enemyController.aiController.rb.velocity.y);
+        enemyController.aiController.rb.angularVelocity = 0;
+    }
+
     void Attack()
     {
         StartCoroutine(AttackDetail());

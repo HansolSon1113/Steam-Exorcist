@@ -19,9 +19,17 @@ public class CrabBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(enemyController.enemy.playerFound && !enemyDamageObject.activeSelf)
+        if (enemyController.enemy.playerFound)
         {
-            enemyDamageObject.SetActive(true);
+            if (!enemyDamageObject.activeSelf)
+            {
+                enemyDamageObject.SetActive(true);
+            }
+            if(!enemyController.isAttacking)
+            {
+                enemyController.aiController.rb.velocity = new Vector2(0, enemyController.aiController.rb.velocity.y);
+                enemyController.aiController.rb.angularVelocity = 0;
+            }
         }
     }
 

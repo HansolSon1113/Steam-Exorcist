@@ -549,7 +549,6 @@ MonoBehaviour:
     ignoreTerrain: 0
     isProjectile: 0
     prefab: {fileID: 0}
-  knockBackForce: 0
 --- !u!1 &7454693330644644027
 GameObject:
   m_ObjectHideFlags: 0

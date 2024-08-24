@@ -15,6 +15,7 @@ public class Entity
     public bool canMove;
     public bool canAttack;
     public float attackSpeed;
+    public float attackCooldown;
 }
 
 
