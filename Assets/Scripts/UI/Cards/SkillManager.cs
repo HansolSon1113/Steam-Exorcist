@@ -7,14 +7,14 @@ public class SkillManager : MonoBehaviour
     public static SkillManager Instance { get; private set; }
     void Awake() => Instance = this;
 
-    public SkillSO skillSO; // ScriptableObject를 통한 스킬 데이터 관리
+    public SkillSO skillSO;
     [HideInInspector] public List<SkillList> skillList = new List<SkillList>();
-    [HideInInspector] public int i = 0; // 현재 선택된 스킬 인덱스
+    [HideInInspector] public int i = 0;
     public SpriteRenderer indicatorSprite;
     [SerializeField] GameObject player;
     PlayerAttack playerAttack;
 
-    private bool skillActivated = false; // 스킬이 발동된 상태를 추적
+    private bool skillActivated = false;
 
     private void Start()
     {
@@ -49,7 +49,7 @@ public class SkillManager : MonoBehaviour
             indicatorSprite.sprite = skillList[i].indicatorSprite;
         }
 
-        // F키 입력 처리
+        // F키
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (SkillCardRotation.Instance.isRotating)
@@ -57,7 +57,7 @@ public class SkillManager : MonoBehaviour
                 // 회전 멈출 수 있는 상태인지 확인
                 if (SkillCardRotation.Instance.CanStop())
                 {
-                    // 회전 멈추기
+                    // 회전 멈춤
                     SkillCardRotation.Instance.shouldRotate = false;
                     SkillCardRotation.Instance.isRotating = false;
                     skillActivated = true;
@@ -65,10 +65,10 @@ public class SkillManager : MonoBehaviour
             }
             else if (skillActivated)
             {
-                // 스킬 발동
+                // 스킬
                 playerAttack.UseSkill(skillList[i]);
 
-                // 스킬 후 회전 재개
+                // 회전 재개
                 skillActivated = false;
                 SkillCardRotation.Instance.shouldRotate = true;
                 StartCoroutine(SkillCardRotation.Instance.RotationCoroutine());
