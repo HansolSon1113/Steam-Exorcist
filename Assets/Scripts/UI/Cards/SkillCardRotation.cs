@@ -6,56 +6,62 @@ public class SkillCardRotation : MonoBehaviour
     public static SkillCardRotation Instance { get; private set; }
     void Awake() => Instance = this;
 
-    public float rotationSpeed = 30f;  // 1/12 ï¿½ï¿½ï¿½ï¿½(30ï¿½ï¿½)ï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ (ï¿½Ê´ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
-    public float rotationInterval = 0.5f;  // 0.5ï¿½Ê¸ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
+    public float rotationSpeed = 30f;
+    public float rotationInterval = 0.5f;
 
     private float targetAngle;
     private float currentAngle;
+    private float angleTolerance = 15f;
     public bool isRotating = false;
     public bool shouldRotate = true;
-    // public Coroutine rotationCoroutineInstance = null;
+
+    // ¸ØÃâ ¼ö ÀÖ´Â °¢µµ
+    private readonly float[] canStopAngles = { 0f, 90f, 180f, 270f };
 
     public void Setup()
     {
-        // ï¿½Ê±ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         currentAngle = transform.eulerAngles.z;
-        targetAngle = currentAngle + 30f; // 1/12 ï¿½ï¿½ï¿½ï¿½ (30ï¿½ï¿½)
         StartCoroutine(RotationCoroutine());
     }
 
     public IEnumerator RotationCoroutine()
     {
-        yield return new WaitForSeconds(rotationInterval);
-        if (shouldRotate)
+        while (shouldRotate)
         {
+            yield return new WaitForSeconds(rotationInterval);
             yield return StartCoroutine(RotateSprite());
+            SkillManager.Instance.i = (SkillManager.Instance.i + 1) % SkillManager.Instance.skillList.Count;
         }
-
-        SkillManager.Instance.i = (SkillManager.Instance.i + 1) % SkillManager.Instance.skillList.Count;
     }
 
     private IEnumerator RotateSprite()
     {
         isRotating = true;
-        for (int i = 0; i < 3; i++)
+
+        targetAngle = currentAngle + 30f; // 30µµ¾¿ È¸Àü
+
+        while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, targetAngle)) > 0.01f)
         {
-            targetAngle = currentAngle + 30f; // 1/12 ï¿½ï¿½ï¿½ï¿½(30ï¿½ï¿½)
+            currentAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(0, 0, currentAngle);
+            yield return null;
+        }
 
-            // È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-            while (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, targetAngle)) > 0.01f)
-            {
-                currentAngle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, targetAngle, rotationSpeed * Time.deltaTime);
-                transform.rotation = Quaternion.Euler(0, 0, currentAngle);
-                yield return null;
-            }
+        currentAngle = targetAngle;
+        isRotating = false;
+    }
 
-            currentAngle = targetAngle;
-            if (i < 2)
+    public bool CanStop()
+    {
+        // ¸ØÃß´Â °¢µµ ¹üÀ§
+        foreach (float angle in canStopAngles)
+        {
+            if (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.z, angle)) <= angleTolerance)
             {
-                yield return new WaitForSeconds(rotationInterval);
+                return true;
             }
         }
-        isRotating = false;
-        StartCoroutine(RotationCoroutine());
+        return false;
     }
+
 }

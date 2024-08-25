@@ -20,7 +20,20 @@ public class PlayerController : MonoBehaviour
         player.attackSpeed = playerValues.attackSpeed;
         damage = playerValues.damage;
         player.health = new Health(playerValues._health, playerValues._maxHealth, playerValues.barrier);
+
+        HealthIndicator.Instance.UpdateHealthIndicator();
     }
 
     public static Entity player { get; set; }
+
+
+    public void Heal(float amount)
+    {
+        if (player != null)
+        {
+            player.health.health = Mathf.Min(player.health.health + amount, player.health.maxHealth);
+
+            HealthIndicator.Instance.UpdateHealthIndicator();
+        }
+    }
 }

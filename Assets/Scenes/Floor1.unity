@@ -896,6 +896,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5688740106360057875, guid: 3643fdc5a436f408a94017f2a22dfca7, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 526845752}
     - targetCorrespondingSourceObject: {fileID: 5018447282206469860, guid: 3643fdc5a436f408a94017f2a22dfca7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 985339536}
@@ -905,6 +908,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5688740106360057875, guid: 3643fdc5a436f408a94017f2a22dfca7, type: 3}
   m_PrefabInstance: {fileID: 404759313}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &526845752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526845741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31862dab5631b154cae942911c9d72f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 0}
+  skillValue: 00000000
+  player: {fileID: 0}
 --- !u!1 &540042246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,7 +1427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.92, y: 0.87}
   m_AnchorMax: {x: 0.98, y: 0.97}
-  m_AnchoredPosition: {x: -1579, y: 5.5}
+  m_AnchoredPosition: {x: -1598, y: 5.5}
   m_SizeDelta: {x: -18, y: -5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &932892859
@@ -1930,8 +1948,6 @@ MonoBehaviour:
   skillSO: {fileID: 11400000, guid: d4be4ee5a937c4f40842e8bfbbcdc32d, type: 2}
   skillList: []
   i: 0
-  radius: 5
-  cardDistance: 1.5
   indicatorSprite: {fileID: 1306427294}
   player: {fileID: 526845741}
 --- !u!1 &1660775327 stripped
@@ -2871,8 +2887,6 @@ MonoBehaviour:
   skillSO: {fileID: 0}
   skillList: []
   i: 0
-  radius: 5
-  cardDistance: 1.5
   indicatorSprite: {fileID: 0}
   player: {fileID: 526845741}
 --- !u!114 &2032330915

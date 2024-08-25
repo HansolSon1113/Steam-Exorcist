@@ -74,4 +74,41 @@ public class HealthIndicator : MonoBehaviour
         }
     }
 
+        public static HealthIndicator Instance { get; private set; }
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
+        // 체력 업데이트
+        public void UpdateHealthIndicator()
+        {
+            int currentHealth = (int)PlayerController.player.health.health;
+
+            for (int i = 0; i < heartsBackground.Count; i++)
+            {
+                int heartIndex = heartsBackground.Count - 1 - i;
+
+                if (i < currentHealth)
+                {
+                    SetHeartActive(heartIndex, true);
+                }
+                else
+                {
+                    SetHeartActive(heartIndex, false);
+                }
+            }
+        }
+
+        // 하트 조각 활성화/비활성화
+        private void SetHeartActive(int index, bool isActive)
+        {
+            for (int j = 0; j < heartPiecesList[index].Count; j++)
+            {
+                heartPiecesList[index][j].SetActive(isActive);
+                heartPiecesGrayList[index][j].SetActive(!isActive);
+            }
+        }
+
 }
