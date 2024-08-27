@@ -7,8 +7,8 @@ public class AICollision : MonoBehaviour
         if (other.gameObject.tag == "PlayerDamage")
         {
             var enemy = GetComponent<EnemyController>().enemy;
-            DoDamage.toTarget(enemy, other.GetComponent<EnemyDamage>().damage);
-            if (other.GetComponent<Projectile_Example>().damage.isProjectile)
+            DoDamage.toTarget(enemy, other.GetComponent<PlayerDamage>().damage);
+            if (other.GetComponent<PlayerDamage>().damage.isProjectile)
             {
                 Destroy(other.gameObject);
             }

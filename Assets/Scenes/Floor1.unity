@@ -714,6 +714,10 @@ PrefabInstance:
       propertyPath: playerValues.damage.isProjectile
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7234599557406119196, guid: 3643fdc5a436f408a94017f2a22dfca7, type: 3}
+      propertyPath: playerValues.player.attackCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7910100049860231538, guid: 3643fdc5a436f408a94017f2a22dfca7, type: 3}
       propertyPath: m_Mass
       value: 1

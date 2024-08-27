@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6802922906638176738}
   - component: {fileID: 19403111913509077}
   - component: {fileID: 1857438615406402199}
+  - component: {fileID: 7140231081314897504}
+  - component: {fileID: 827285417058512430}
   m_Layer: 0
   m_Name: BasicAttack
   m_TagString: PlayerDamage
@@ -130,3 +132,47 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7140231081314897504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8489591772693873536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbda3494e99994100a6f31aa7db088ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    minDamage: 0
+    maxDamage: 0
+    critChance: 0
+    critMultiplier: 0
+    armorPenetration: 0
+    self: 0
+    ignoreTerrain: 0
+    isProjectile: 0
+    prefab: {fileID: 0}
+--- !u!114 &827285417058512430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8489591772693873536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38e708d5caba54b4db4b5e5f3284ecca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    minDamage: 0
+    maxDamage: 0
+    critChance: 0
+    critMultiplier: 0
+    armorPenetration: 0
+    self: 0
+    ignoreTerrain: 0
+    isProjectile: 0
+    prefab: {fileID: 0}

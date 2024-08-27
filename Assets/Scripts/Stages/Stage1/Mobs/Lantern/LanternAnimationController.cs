@@ -7,7 +7,8 @@ public class LanternAnimationController : MonoBehaviour
     private Animator animator;
     private EnemyController enemyController;
     private LanternBehaviour lantern;
-    private bool isAttacking;
+    private bool alreadyAttacked;
+    private LanternBehaviour lanternBehaviour;
 
     private void Start()
     {
@@ -18,27 +19,28 @@ public class LanternAnimationController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (enemyController.isAttacking && !isAttacking)
+        if (lantern.isAttacking && !alreadyAttacked)
         {
-            StartCoroutine(Attack());
-        }
-
-        if(enemyController.isWalking)
-        {
-            animator.SetBool("Walking", true);
+            alreadyAttacked = true;
+            animator.SetBool("Attacking", true);
         }
         else
         {
+            animator.SetBool("Attacking", false);
+        }
+
+        if (!enemyController.isAttacking && alreadyAttacked)
+        {
+            alreadyAttacked = false;
+        }
+
+        if (enemyController.isWalking && !lantern.isAttacking)
+        {
+            animator.SetBool("Walking", true);
+        }
+        else if(!enemyController.isWalking || lantern.isAttacking)
+        {
             animator.SetBool("Walking", false);
         }
-    }
-
-    private IEnumerator Attack()
-    {
-        isAttacking = true;
-        animator.SetBool("Attacking", true);
-        yield return new WaitForSeconds(1f);
-        animator.SetBool("Attacking", false);
-        isAttacking = false;
     }
 }
