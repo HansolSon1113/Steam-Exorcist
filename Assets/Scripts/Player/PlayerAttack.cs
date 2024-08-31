@@ -12,8 +12,11 @@ public class PlayerAttack : MonoBehaviour
     SkillManager skillManager;
     [SerializeField] Transform player;
     private Vector2 mouseLocation;
-    private bool isAttacking;
+    public bool isAttacking;
     private float playerMouseAngle;
+    private GameObject basicAttackObject;
+    [SerializeField] PlayerDamage basicAttack;
+    public bool animate;
 
     public void Setup(SkillList _skill)
     {
@@ -31,6 +34,7 @@ public class PlayerAttack : MonoBehaviour
     {
         skillManager = SkillManager.Instance;
         skill = null;
+        basicAttack.damage = PlayerController.damage;
     }
 
     private void Update()
@@ -51,9 +55,7 @@ public class PlayerAttack : MonoBehaviour
     public IEnumerator BasicAttack()
     {
         isAttacking = true;
-        playerMouseAngle = Mathf.Atan2(mouseLocation.y - player.position.y, mouseLocation.x - player.position.x) * Mathf.Rad2Deg + 45f;
-        var basicObject = Instantiate(PlayerController.damage.prefab, transform.position, Quaternion.Euler(0f, 0f, playerMouseAngle));
-        basicObject.GetComponent<PlayerDamage>().damage = PlayerController.damage;
+        animate = true;
         yield return new WaitForSeconds(PlayerController.player.attackCooldown);
         isAttacking = false;
     }

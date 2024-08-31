@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerValues playerValues;
     public static MovementController movementController;
+    public static PlayerAttack playerAttack;
     public static Damage damage;
 
     public void Awake()
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
         player.attackSpeed = playerValues.attackSpeed;
         damage = playerValues.damage;
         player.health = new Health(playerValues._health, playerValues._maxHealth, playerValues.barrier);
+
+        playerAttack = GetComponent<PlayerAttack>();
     }
 
     public static Entity player { get; set; }

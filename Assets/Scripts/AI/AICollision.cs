@@ -19,7 +19,7 @@ public class AICollision : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         var enemy = this.GetComponent<AIController>();
-        if (other.gameObject.tag == "Terrain")
+        if (other.gameObject.tag == "Terrain" || other.gameObject.tag == "Ground")
         {
             enemy.terrainTransform = other.gameObject.transform;
             enemy.aiSensor.isOn = true;

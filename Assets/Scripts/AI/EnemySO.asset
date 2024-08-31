@@ -26,6 +26,7 @@ MonoBehaviour:
       canMove: 0
       canAttack: 0
       attackSpeed: 5
+      attackCooldown: 0
       damage:
       - minDamage: 1
         maxDamage: 1
@@ -58,6 +59,7 @@ MonoBehaviour:
       canMove: 0
       canAttack: 0
       attackSpeed: 4
+      attackCooldown: 0
       damage:
       - minDamage: 1
         maxDamage: 1
@@ -80,7 +82,7 @@ MonoBehaviour:
   - name: Crab2
     enemy:
       armor: 10
-      direction: 1
+      direction: -1
       invDuration: 0
       defDuration: 0
       isInvincible: 0
@@ -90,6 +92,7 @@ MonoBehaviour:
       canMove: 0
       canAttack: 0
       attackSpeed: 4
+      attackCooldown: 0
       damage:
       - minDamage: 1
         maxDamage: 1

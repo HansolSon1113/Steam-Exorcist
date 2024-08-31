@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerDefendShield : MonoBehaviour
 {
     [SerializeField] float knockBackForce;
+    [SerializeField] DefendEffect defendEffect;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,6 +20,7 @@ public class PlayerDefendShield : MonoBehaviour
             {
                 enemyDamage.KnockBack(PlayerController.player.direction, knockBackForce);
             }
+            defendEffect.shieldHit = true;
         }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerDefend : MonoBehaviour
 {
     [SerializeField] GameObject shield;
+    [SerializeField] AnimationManager animationManager;
 
     public static IEnumerator Invincible()
     {
@@ -25,8 +26,10 @@ public class PlayerDefend : MonoBehaviour
     {
         PlayerController.player.isDefending = true;
         shield.SetActive(true);
+        animationManager.defend = true;
         yield return new WaitForSeconds(PlayerController.player.defDuration);
         shield.SetActive(false);
+        animationManager.defend = false;
         yield return new WaitForSeconds(5f);
         PlayerController.player.isDefending = false;
     }

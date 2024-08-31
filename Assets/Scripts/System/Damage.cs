@@ -20,6 +20,5 @@ public class Damage
         this.critChance = critChance;
         this.critMultiplier = critMultiplier;
         this.armorPenetration = armorPenetration;
-        this.self = self;
     }
 }
