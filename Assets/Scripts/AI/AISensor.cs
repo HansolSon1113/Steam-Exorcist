@@ -47,4 +47,12 @@ public class AISensor : MonoBehaviour
             }
         }
     }
+
+    // private void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     if(other.gameObject.tag == "Player")
+    //     {
+    //         aiController.enemyController.enemy.playerFound = true;
+    //     }
+    // }
 }

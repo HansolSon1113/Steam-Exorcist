@@ -5,40 +5,40 @@ using UnityEngine;
 public class HealthIndicator : MonoBehaviour
 {
     [SerializeField] GameObject heartBackground;
-    [SerializeField] GameObject[] heartPiecePrefabs;  // °¢ ÇÏÆ® Á¶°¢ÀÇ ÇÁ¸®ÆÕ ¹è¿­ (Á¤»ó »óÅÂ)
-    [SerializeField] GameObject[] heartPieceGrayPrefabs;  // °¢ ÇÏÆ® Á¶°¢ÀÇ È¸»ö ÇÁ¸®ÆÕ ¹è¿­
+    [SerializeField] GameObject[] heartPiecePrefabs;  // ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+    [SerializeField] GameObject[] heartPieceGrayPrefabs;  // ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­
 
     public List<GameObject> heartsBackground = new List<GameObject>();
-    public List<List<GameObject>> heartPiecesList = new List<List<GameObject>>();  // °¢ ÇÏÆ®ÀÇ ³× Á¶°¢À» ´ã´Â ¸®½ºÆ®
-    public List<List<GameObject>> heartPiecesGrayList = new List<List<GameObject>>();  // °¢ ÇÏÆ®ÀÇ È¸»ö Á¶°¢À» ´ã´Â ¸®½ºÆ®
+    public List<List<GameObject>> heartPiecesList = new List<List<GameObject>>();  // ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+    public List<List<GameObject>> heartPiecesGrayList = new List<List<GameObject>>();  // ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 
     private void Start()
     {
         for (int i = 0; i < PlayerController.player.health.maxHealth; i++)
         {
-            // ÇÏÆ® ¹è°æ »ý¼º
+            // ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             GameObject heartBg = Instantiate(heartBackground, new Vector3(transform.position.x - 1.2f * i, transform.position.y, transform.position.z), Quaternion.identity);
             heartsBackground.Add(heartBg);
             heartBg.transform.SetParent(this.transform);
 
-            // Á¤»ó »óÅÂÀÇ ÇÏÆ® Á¶°¢ »ý¼º
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             List<GameObject> pieces = new List<GameObject>();
             for (int j = 0; j < heartPiecePrefabs.Length; j++)
             {
                 GameObject piece = Instantiate(heartPiecePrefabs[j], heartBg.transform);
                 piece.transform.localPosition = Vector3.zero;
-                pieces.Add(piece);  // ¸®½ºÆ®¿¡ Ãß°¡
+                pieces.Add(piece);  // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
             }
             heartPiecesList.Add(pieces);
 
-            // È¸»ö »óÅÂÀÇ ÇÏÆ® Á¶°¢ »ý¼º (ÃÊ±â¿£ ºñÈ°¼ºÈ­ »óÅÂ)
+            // È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ê±â¿£ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½)
             List<GameObject> piecesGray = new List<GameObject>();
             for (int j = 0; j < heartPieceGrayPrefabs.Length; j++)
             {
                 GameObject pieceGray = Instantiate(heartPieceGrayPrefabs[j], heartBg.transform);
-                pieceGray.transform.localPosition = Vector3.zero;
-                pieceGray.SetActive(false);  // È¸»ö Á¶°¢Àº ÃÊ±â »óÅÂ¿¡¼­´Â ºñÈ°¼ºÈ­
-                piecesGray.Add(pieceGray);  // ¸®½ºÆ®¿¡ Ãß°¡
+                pieceGray.transform.localPosition = new Vector2(0.13f, -0.05f);
+                pieceGray.SetActive(false);  // È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
+                piecesGray.Add(pieceGray);  // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
             }
             heartPiecesGrayList.Add(piecesGray);
         }
@@ -48,14 +48,14 @@ public class HealthIndicator : MonoBehaviour
     {
         int currentHealth = (int)PlayerController.player.health.health;
 
-        // ÇÏÆ® »óÅÂ ¾÷µ¥ÀÌÆ®
+        // ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         for (int i = 0; i < heartsBackground.Count; i++)
         {
-            int heartIndex = heartsBackground.Count - 1 - i; // ÀÎµ¦½º¸¦ ¹Ý´ë·Î º¯°æ
+            int heartIndex = heartsBackground.Count - 1 - i; // ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
             if (i < currentHealth)
             {
-                // Á¤»ó »óÅÂÀÇ Á¶°¢ È°¼ºÈ­, È¸»ö Á¶°¢ ºñÈ°¼ºÈ­
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­, È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
                 for (int j = 0; j < heartPiecesList[heartIndex].Count; j++)
                 {
                     heartPiecesList[heartIndex][j].SetActive(true);
@@ -64,7 +64,7 @@ public class HealthIndicator : MonoBehaviour
             }
             else
             {
-                // Á¤»ó »óÅÂÀÇ Á¶°¢ ºñÈ°¼ºÈ­, È¸»ö Á¶°¢ È°¼ºÈ­
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­, È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
                 for (int j = 0; j < heartPiecesList[heartIndex].Count; j++)
                 {
                     heartPiecesList[heartIndex][j].SetActive(false);

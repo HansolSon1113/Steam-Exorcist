@@ -8,6 +8,7 @@ public class LanternBehaviour : MonoBehaviour
     public float vertSpeed;
     public bool isAttacking;
     [SerializeField] Transform spawnPosition;
+    private bool changedDir = false;
 
     void Start()
     {
@@ -19,13 +20,25 @@ public class LanternBehaviour : MonoBehaviour
     {
         enemyController.aiController.rb.velocity = new Vector2(0, enemyController.aiController.rb.velocity.y);
         enemyController.aiController.rb.angularVelocity = 0;
+        isAttacking = false;
+
+        if (enemyController.enemy.playerFound)
+        {
+            if(!changedDir)
+            {
+                StartCoroutine(changeDir());
+            }
+            
+        }
+    }
+
+    IEnumerator changeDir()
+    {
+        changedDir = true;
         int playerDirection = (PlayerController.movementController.playerTransform.position.x >= enemyController.aiController.aiTransform.position.x) ? 1 : -1;
         enemyController.enemy.direction = playerDirection;
-
-        if (!enemyController.enemy.playerFound)
-        {
-            isAttacking = false;
-        }
+        yield return new WaitForSeconds(0.5f);
+        changedDir = false;
     }
 
     void Attack()

@@ -252,7 +252,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.9, y: 0.9}
+  m_Size: {x: 0.8, y: 0.9}
   m_Direction: 0
 --- !u!114 &1378548604647331958
 MonoBehaviour:
@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertSpeed: 0
+  isAttacking: 0
   spawnPosition: {fileID: 4915573066744220055}
 --- !u!114 &3550538678902509688
 MonoBehaviour:
@@ -402,7 +403,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 0.333}
+  m_Size: {x: 0.8, y: 0.3}
   m_EdgeRadius: 0
 --- !u!1 &3572780047247546051
 GameObject:

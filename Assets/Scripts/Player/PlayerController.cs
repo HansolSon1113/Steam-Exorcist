@@ -12,13 +12,13 @@ public class PlayerController : MonoBehaviour
     public void Awake()
     {
         player = playerValues.player;
-        player.direction = playerValues.direction;
-        player.isFlying = playerValues.isFlying;
-        player.isInvincible = playerValues.isInvincible;
-        player.canMove = playerValues.canMove;
-        player.canFly = playerValues.canFly;
-        player.canAttack = playerValues.canAttack;
-        player.attackSpeed = playerValues.attackSpeed;
+        // player.direction = playerValues.direction;
+        // player.isFlying = playerValues.isFlying;
+        // player.isInvincible = playerValues.isInvincible;
+        // player.canMove = playerValues.canMove;
+        // player.canFly = playerValues.canFly;
+        // player.canAttack = playerValues.canAttack;
+        // player.attackSpeed = playerValues.attackSpeed;
         damage = playerValues.damage;
         player.health = new Health(playerValues._health, playerValues._maxHealth, playerValues.barrier);
 

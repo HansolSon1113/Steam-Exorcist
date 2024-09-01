@@ -20,15 +20,16 @@ public class EnemyController : MonoBehaviour
     {
         this.enemy = enemy;
         enemy.health = new Health(health, maxHealth, barrier);
-        enemy.canMove = canMove;
-        enemy.canFly = canFly;
-        enemy.canAttack = canAttack;
-        enemy.scrapCount = scrapCount;
+        // enemy.canMove = canMove;
+        // enemy.canFly = canFly;
+        // enemy.canAttack = canAttack;
+        // enemy.scrapCount = scrapCount;
         enemy.enemyIndicator = GetComponent<EnemyIndicator>();
-        enemy.canMove = canMove;
-        enemy.canFly = canFly;
-        enemy.canAttack = canAttack;
-        enemy.scrapCount = scrapCount;
+        // enemy.canMove = canMove;
+        // enemy.canFly = canFly;
+        // enemy.canAttack = canAttack;
+        // enemy.scrapCount = scrapCount;
+        enemy.playerFound = false;
     }
 
     private void FixedUpdate()

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AICollision : MonoBehaviour
 {
+    private bool hasChangedDirection = false;
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "PlayerDamage")
@@ -13,6 +15,7 @@ public class AICollision : MonoBehaviour
                 Destroy(other.gameObject);
             }
             enemy.enemyIndicator.UpdateHealthBar(enemy.health);
+            other.gameObject.SetActive(false);
         }
     }
 
@@ -27,9 +30,16 @@ public class AICollision : MonoBehaviour
             enemy.minX = enemy.aiSensor.minX = enemy.terrainTransform.position.x - other.gameObject.GetComponent<BoxCollider2D>().size.x / 2f;
             this.GetComponent<EnemyController>().isWalking = true;
         }
-        else if(other.gameObject.tag == "Enemy")
+        else if((other.gameObject.tag == "Enemy" || other.gameObject.tag == "Edge") && !hasChangedDirection)
         {
-            this.GetComponent<EnemyController>().enemy.direction *= -1;
+            this.GetComponent<EnemyController>().enemy.direction *= dir.opposite;
+            hasChangedDirection = true;
+            Invoke("ResetDirectionChange", 0.5f);
         }
+    }
+
+    private void ResetDirectionChange()
+    {
+        hasChangedDirection = false;
     }
 }

@@ -14,8 +14,8 @@ public class PlayerAttack : MonoBehaviour
     private Vector2 mouseLocation;
     public bool isAttacking;
     private float playerMouseAngle;
-    private GameObject basicAttackObject;
     [SerializeField] PlayerDamage basicAttack;
+    [SerializeField] GameObject basicAttackObject;
     public bool animate;
 
     public void Setup(SkillList _skill)
@@ -56,6 +56,10 @@ public class PlayerAttack : MonoBehaviour
     {
         isAttacking = true;
         animate = true;
+        basicAttackObject.SetActive(true);
+        Debug.Log(PlayerController.player.attackSpeed);
+        yield return new WaitForSeconds(PlayerController.player.attackSpeed);
+        basicAttackObject.SetActive(false);
         yield return new WaitForSeconds(PlayerController.player.attackCooldown);
         isAttacking = false;
     }
