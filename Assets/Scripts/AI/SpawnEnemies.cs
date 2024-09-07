@@ -22,7 +22,7 @@ public class SpawnEnemies : MonoBehaviour
                 if(enemyElement.name == spawnLocation.name)
                 {
                     var enemy = Instantiate(enemyElement.prefab, spawnLocation.transform.position, Quaternion.identity);
-                    EnemyController enemyController = enemy.GetComponent<EnemyController>();
+                    EnemyController enemyController = enemy.GetComponentInChildren<EnemyController>();
                     enemyController.Setup(enemyElement.enemy, enemyElement.health, enemyElement.maxHealth, enemyElement.barrier, enemyElement.canMove, enemyElement.canFly, enemyElement.canAttack, enemyElement.scrapCount);
                     enemies.Add(enemy);
                     break;

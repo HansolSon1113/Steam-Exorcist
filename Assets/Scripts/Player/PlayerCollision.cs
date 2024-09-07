@@ -46,8 +46,10 @@ public class PlayerCollision : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemySensor")
         {
-            other.GetComponentInParent<EnemyController>().enemy.playerFound = true;
-            other.GetComponentInParent<AIController>().aiSensor.isOn = false;
+            var bridge = other.GetComponentInParent<EnemyBridge>();
+            bridge.enemyController.enemy.playerFound = true;
+            Debug.Log($"Player Found value changed to {bridge.enemyController.enemy.playerFound}");
+            bridge.aiController.aiSensor.isOn = false;
         }
 
         if (other.gameObject.tag == "EnemyDamage")

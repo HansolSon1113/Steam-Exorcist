@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
     public void Setup(EnemyValue enemy, float health, float maxHealth, float barrier, bool canMove, bool canFly, bool canAttack, int scrapCount)
     {
         this.enemy = enemy;
-        enemy.health = new Health(health, maxHealth, barrier);
+        this.enemy.health = new Health(health, maxHealth, barrier);
         // enemy.canMove = canMove;
         // enemy.canFly = canFly;
         // enemy.canAttack = canAttack;
@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
         // enemy.canFly = canFly;
         // enemy.canAttack = canAttack;
         // enemy.scrapCount = scrapCount;
-        enemy.playerFound = false;
+        this.enemy.playerFound = false;
     }
 
     private void FixedUpdate()

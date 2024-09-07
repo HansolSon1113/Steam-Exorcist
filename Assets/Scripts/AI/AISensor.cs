@@ -7,11 +7,10 @@ public class AISensor : MonoBehaviour
     public float maxX, minX;
     private Vector3 orgScale;
     public bool isOn = false;
-    private AIController aiController;
+    [SerializeField] AIController aiController;
 
     private void Start()
     {
-        aiController = GetComponentInParent<AIController>();
         orgScale = transform.localScale;
     }
 

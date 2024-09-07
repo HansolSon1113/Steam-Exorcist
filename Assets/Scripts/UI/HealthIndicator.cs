@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthIndicator : MonoBehaviour
 {
+    [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject heartBackground;
     [SerializeField] GameObject[] heartPiecePrefabs;  // �� ��Ʈ ������ ������ �迭 (���� ����)
     [SerializeField] GameObject[] heartPieceGrayPrefabs;  // �� ��Ʈ ������ ȸ�� ������ �迭
@@ -47,6 +48,12 @@ public class HealthIndicator : MonoBehaviour
     private void FixedUpdate()
     {
         int currentHealth = (int)PlayerController.player.health.health;
+
+        if (currentHealth <= 0)
+        {
+            gameOverPanel.SetActive(true);
+            return;
+        }
 
         // ��Ʈ ���� ������Ʈ
         for (int i = 0; i < heartsBackground.Count; i++)

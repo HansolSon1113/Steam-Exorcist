@@ -49,6 +49,7 @@ public class LanternBehaviour : MonoBehaviour
     private IEnumerator AttackDetail()
     {
         isAttacking = true;
+        enemyController.aiController.rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.7f);
         float targetAngle = Mathf.Atan2(PlayerController.movementController.playerTransform.position.y - this.transform.position.y, PlayerController.movementController.playerTransform.position.x - this.transform.position.x) * Mathf.Rad2Deg + 90;
         var attackObject = Instantiate(enemyController.enemy.damage[0].prefab, spawnPosition.position, Quaternion.Euler(0, 0, targetAngle));
