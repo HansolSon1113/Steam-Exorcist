@@ -8,7 +8,7 @@ public class SkillManager : MonoBehaviour
     void Awake() => Instance = this;
     public SkillSO skillSO;
     [HideInInspector] public List<SkillList> skillList = new List<SkillList> { };
-    [HideInInspector]public int i = 0;
+    [HideInInspector] public int i = 0;
     public float radius = 5f;
     public float cardDistance = 1.5f;
     public SpriteRenderer indicatorSprite;

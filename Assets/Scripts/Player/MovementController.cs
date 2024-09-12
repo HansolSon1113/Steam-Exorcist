@@ -68,7 +68,7 @@ public class MovementController : MonoBehaviour, CameraController
             PlayerController.player.direction = dir.right;
         }
 
-        UpdateCameraPosition();
+        //UpdateCameraPosition();
     }
 
     private IEnumerator JumpHigher()
@@ -94,6 +94,15 @@ public class MovementController : MonoBehaviour, CameraController
         Vector3 aheadOffset = new Vector3(dynamicAheadDistance * PlayerController.player.direction, 0, 0);
         Vector3 targetPosition = playerTransform.position + cameraOffset + aheadOffset;
         targetPosition.y += 1;
+        if(targetPosition.x < StageSettings.XedgeLeft || targetPosition.x > StageSettings.XedgeRight)
+        {
+            targetPosition.x = cameraArm.position.x;
+        }
+        else if(targetPosition.y < StageSettings.YedgeBottom || targetPosition.y > StageSettings.YedgeTop)
+        {
+            targetPosition.y = cameraArm.position.y;
+        }
+
         Vector3 smoothedPosition = Vector3.SmoothDamp(cameraArm.position, targetPosition, ref cameraVelocity, 0.3f);
         cameraArm.position = smoothedPosition;
     }

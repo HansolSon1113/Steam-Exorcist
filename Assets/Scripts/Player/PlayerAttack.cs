@@ -12,8 +12,11 @@ public class PlayerAttack : MonoBehaviour
     SkillManager skillManager;
     [SerializeField] Transform player;
     private Vector2 mouseLocation;
-    private bool isAttacking;
+    public bool isAttacking;
     private float playerMouseAngle;
+    [SerializeField] PlayerDamage basicAttack;
+    [SerializeField] GameObject basicAttackObject;
+    public bool animate;
 
     public void Setup(SkillList _skill)
     {
@@ -31,6 +34,7 @@ public class PlayerAttack : MonoBehaviour
     {
         skillManager = SkillManager.Instance;
         skill = null;
+        basicAttack.damage = PlayerController.damage;
     }
 
     private void Update()
@@ -51,14 +55,12 @@ public class PlayerAttack : MonoBehaviour
     public IEnumerator BasicAttack()
     {
         isAttacking = true;
-        playerMouseAngle = Mathf.Atan2(mouseLocation.y - player.position.y, mouseLocation.x - player.position.x) * Mathf.Rad2Deg + 90;
-        var basicObject = Instantiate(PlayerController.damage.prefab, transform.position, Quaternion.Euler(0f, 0f, playerMouseAngle));
-        for (int i = 0; i < basicObject.transform.childCount; i++)
-        {
-            basicObject.transform.GetChild(i).gameObject.GetComponent<Projectile_Example>().Setup(PlayerController.damage);
-        }
-        Destroy(basicObject, 1f);
+        animate = true;
+        basicAttackObject.SetActive(true);
+        Debug.Log(PlayerController.player.attackSpeed);
         yield return new WaitForSeconds(PlayerController.player.attackSpeed);
+        basicAttackObject.SetActive(false);
+        yield return new WaitForSeconds(PlayerController.player.attackCooldown);
         isAttacking = false;
     }
 
@@ -80,7 +82,7 @@ public class PlayerAttack : MonoBehaviour
         var skillObject = Instantiate(skill.damage.prefab, transform.position, Quaternion.Euler(0f, 0f, playerMouseAngle));
         for (int i = 0; i < skillObject.transform.childCount; i++)
         {
-            skillObject.transform.GetChild(i).gameObject.GetComponent<Projectile_Example>().Setup(skill.damage);
+            skillObject.transform.GetChild(i).gameObject.GetComponent<PlayerDamage>().damage = skill.damage;
         }
 
         GameObject[] children = new GameObject[skillObject.transform.childCount];

@@ -6,6 +6,7 @@ public class AnimationManager : MonoBehaviour
 {
     private Animator animator;
     private bool landed;
+    public bool defend;
 
     void Start()
     {
@@ -25,20 +26,14 @@ public class AnimationManager : MonoBehaviour
 
         if (PlayerController.movementController.h == 0)
         {
-            animator.SetBool("RunRight", false);
-            animator.SetBool("RunLeft", false);
             animator.SetBool("isRun", false);
         }
         else if (PlayerController.movementController.player.velocity.x > 0)
         {
-            animator.SetBool("RunRight", true);
-            animator.SetBool("RunLeft", false);
             animator.SetBool("isRun", true);
         }
         else if (PlayerController.movementController.player.velocity.x < 0)
         {
-            animator.SetBool("RunLeft", true);
-            animator.SetBool("RunRight", false);
             animator.SetBool("isRun", true);
         }
     
@@ -51,7 +46,7 @@ public class AnimationManager : MonoBehaviour
             animator.SetBool("Flying", false);
         }
 
-        if(PlayerController.player.isDefending == true)
+        if(defend == true)
         {
             animator.SetBool("Defend", true);
         }
@@ -59,11 +54,21 @@ public class AnimationManager : MonoBehaviour
         {
             animator.SetBool("Defend", false);
         }
+
+        if(PlayerController.playerAttack.animate == true)
+        {
+            animator.SetBool("Attack", true);
+            PlayerController.playerAttack.animate = false;
+        }
+        else
+        {
+            animator.SetBool("Attack", false);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Terrain")
+        if(other.gameObject.tag == "Terrain" || other.gameObject.tag == "Ground")
         {
             landed = true;
             animator.SetBool("Landed", true);

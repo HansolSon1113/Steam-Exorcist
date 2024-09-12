@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 9182323757678601425}
   - component: {fileID: 7434161919883031150}
   - component: {fileID: 8004310548520812706}
-  - component: {fileID: 255349049489820047}
+  - component: {fileID: 5818799731759663966}
+  - component: {fileID: 6132236963567262771}
   m_Layer: 0
   m_Name: Projectile_NoGravity_Example 1
-  m_TagString: EnemyDamage
+  m_TagString: PlayerDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,7 +160,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &255349049489820047
+--- !u!114 &5818799731759663966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +169,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2587433902068127199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48653075cf9c34b75a0f917caed6e12d, type: 3}
+  m_Script: {fileID: 11500000, guid: ca96144066ac44290bee98caf1f5006e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage:
@@ -179,5 +180,28 @@ MonoBehaviour:
     armorPenetration: 0
     self: 0
     ignoreTerrain: 0
+    isProjectile: 0
     prefab: {fileID: 0}
-  speed: 10
+  speed: 10000
+--- !u!114 &6132236963567262771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2587433902068127199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbda3494e99994100a6f31aa7db088ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage:
+    minDamage: 0
+    maxDamage: 0
+    critChance: 0
+    critMultiplier: 0
+    armorPenetration: 0
+    self: 0
+    ignoreTerrain: 0
+    isProjectile: 0
+    prefab: {fileID: 0}

@@ -4,73 +4,81 @@ using UnityEngine;
 
 public class HealthIndicator : MonoBehaviour
 {
-    [SerializeField] GameObject heartPrefab;
+    [SerializeField] GameObject gameOverPanel;
     [SerializeField] GameObject heartBackground;
-    [SerializeField] GameObject barrierPrefab;
-    public List<GameObject> hearts = new List<GameObject>();
+    [SerializeField] GameObject[] heartPiecePrefabs;  // �� ��Ʈ ������ ������ �迭 (���� ����)
+    [SerializeField] GameObject[] heartPieceGrayPrefabs;  // �� ��Ʈ ������ ȸ�� ������ �迭
+
     public List<GameObject> heartsBackground = new List<GameObject>();
-    public List<GameObject> barriers = new List<GameObject>();
+    public List<List<GameObject>> heartPiecesList = new List<List<GameObject>>();  // �� ��Ʈ�� �� ������ ��� ����Ʈ
+    public List<List<GameObject>> heartPiecesGrayList = new List<List<GameObject>>();  // �� ��Ʈ�� ȸ�� ������ ��� ����Ʈ
 
     private void Start()
     {
-        for (int i = 0; i < PlayerController.player.health.barrier; i++)
-        {
-            GameObject barrier = Instantiate(barrierPrefab, new Vector3(transform.position.x - 1.2f * i, transform.position.y, transform.position.z), Quaternion.identity);
-            barriers.Add(barrier);
-            barrier.transform.SetParent(this.transform);
-        }
-
         for (int i = 0; i < PlayerController.player.health.maxHealth; i++)
         {
-            GameObject heart = Instantiate(heartBackground, new Vector3(transform.position.x - 1.2f * (i + PlayerController.player.health.barrier), transform.position.y, transform.position.z), Quaternion.identity);
-            heartsBackground.Add(heart);
-            heart.transform.SetParent(this.transform);
-        }
+            // ��Ʈ ��� ����
+            GameObject heartBg = Instantiate(heartBackground, new Vector3(transform.position.x - 1.2f * i, transform.position.y, transform.position.z), Quaternion.identity);
+            heartsBackground.Add(heartBg);
+            heartBg.transform.SetParent(this.transform);
 
-        for (int i = 0; i < PlayerController.player.health.health; i++)
-        {
-            GameObject heart = Instantiate(heartPrefab, heartsBackground[i].transform.position, Quaternion.identity);
-            hearts.Add(heart);
-            heart.transform.SetParent(this.transform);
+            // ���� ������ ��Ʈ ���� ����
+            List<GameObject> pieces = new List<GameObject>();
+            for (int j = 0; j < heartPiecePrefabs.Length; j++)
+            {
+                GameObject piece = Instantiate(heartPiecePrefabs[j], heartBg.transform);
+                piece.transform.localPosition = Vector3.zero;
+                pieces.Add(piece);  // ����Ʈ�� �߰�
+            }
+            heartPiecesList.Add(pieces);
+
+            // ȸ�� ������ ��Ʈ ���� ���� (�ʱ⿣ ��Ȱ��ȭ ����)
+            List<GameObject> piecesGray = new List<GameObject>();
+            for (int j = 0; j < heartPieceGrayPrefabs.Length; j++)
+            {
+                GameObject pieceGray = Instantiate(heartPieceGrayPrefabs[j], heartBg.transform);
+                pieceGray.transform.localPosition = new Vector2(0.13f, -0.05f);
+                pieceGray.SetActive(false);  // ȸ�� ������ �ʱ� ���¿����� ��Ȱ��ȭ
+                piecesGray.Add(pieceGray);  // ����Ʈ�� �߰�
+            }
+            heartPiecesGrayList.Add(piecesGray);
         }
     }
 
     private void FixedUpdate()
     {
-        if (PlayerController.player.health.health < hearts.Count)
+        int currentHealth = (int)PlayerController.player.health.health;
+
+        if (currentHealth <= 0)
         {
-            Destroy(hearts[hearts.Count - 1]);
-            hearts.RemoveAt(hearts.Count - 1);
+            gameOverPanel.SetActive(true);
+            return;
         }
 
-        if (PlayerController.player.health.health > hearts.Count)
+        // ��Ʈ ���� ������Ʈ
+        for (int i = 0; i < heartsBackground.Count; i++)
         {
-            GameObject heart = Instantiate(heartPrefab, new Vector3(transform.position.x - 1.2f * hearts.Count, transform.position.y, transform.position.z), Quaternion.identity);
-            hearts.Add(heart);
-            heart.transform.SetParent(this.transform);
-        }
+            int heartIndex = heartsBackground.Count - 1 - i; // �ε����� �ݴ�� ����
 
-        if (PlayerController.player.health.barrier < barriers.Count)
-        {
-            Destroy(barriers[barriers.Count - 1]);
-            barriers.RemoveAt(barriers.Count - 1);
-            for (int i = 0; i < hearts.Count; i++)
+            if (i < currentHealth)
             {
-                heartsBackground[i].transform.position = new Vector3(transform.position.x - 1.2f * (i + PlayerController.player.health.barrier), transform.position.y, transform.position.z);
-                hearts[i].transform.position = new Vector3(transform.position.x - 1.2f * (i + PlayerController.player.health.barrier), transform.position.y, transform.position.z);
+                // ���� ������ ���� Ȱ��ȭ, ȸ�� ���� ��Ȱ��ȭ
+                for (int j = 0; j < heartPiecesList[heartIndex].Count; j++)
+                {
+                    heartPiecesList[heartIndex][j].SetActive(true);
+                    heartPiecesGrayList[heartIndex][j].SetActive(false);
+                }
             }
-        }
-
-        if (PlayerController.player.health.barrier > barriers.Count)
-        {
-            GameObject barrier = Instantiate(barrierPrefab, new Vector3(transform.position.x - 1.2f * (hearts.Count + barriers.Count), transform.position.y, transform.position.z), Quaternion.identity);
-            barriers.Add(barrier);
-            barrier.transform.SetParent(this.transform);
-            for (int i = 0; i < hearts.Count; i++)
+            else
             {
-                heartsBackground[i].transform.position = new Vector3(transform.position.x - 1.2f * (i + PlayerController.player.health.barrier), transform.position.y, transform.position.z);
-                hearts[i].transform.position = new Vector3(transform.position.x - 1.2f * (i + PlayerController.player.health.barrier), transform.position.y, transform.position.z);
+                // ���� ������ ���� ��Ȱ��ȭ, ȸ�� ���� Ȱ��ȭ
+                for (int j = 0; j < heartPiecesList[heartIndex].Count; j++)
+                {
+                    heartPiecesList[heartIndex][j].SetActive(false);
+                    heartPiecesGrayList[heartIndex][j].SetActive(true);
+                }
             }
         }
     }
+
 }
