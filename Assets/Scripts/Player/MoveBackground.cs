@@ -8,7 +8,7 @@ public class MoveBackground : MonoBehaviour
 
     void Update()
     {
-        this.transform.position += (orgPlayer - PlayerController.movementController.playerTransform.position) * 0.5f;
+        this.transform.position += (orgPlayer - PlayerController.movementController.playerTransform.position) * 0.05f;
         orgPlayer = PlayerController.movementController.playerTransform.position;
     }
 }
