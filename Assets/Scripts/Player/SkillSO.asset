@@ -28,3 +28,18 @@ MonoBehaviour:
         isProjectile: 1
         prefab: {fileID: 2587433902068127199, guid: e0823be180da0431cb091fa5c20bb68b, type: 3}
       speed: 0
+  - name: CloseRangedAttack
+    indicatorSprite: {fileID: 7482667652216324306, guid: 4a76559d7c7cd4d65a3c37f704ed9b23, type: 3}
+    skill:
+    - name: CloseRangedAttack_Normal
+      damage:
+        minDamage: 10
+        maxDamage: 20
+        critChance: 30
+        critMultiplier: 1
+        armorPenetration: 0
+        self: 0
+        ignoreTerrain: 0
+        isProjectile: 0
+        prefab: {fileID: 922007853533194556, guid: 5b6d9751c7e824a3190a7b207959258e, type: 3}
+      speed: 0
