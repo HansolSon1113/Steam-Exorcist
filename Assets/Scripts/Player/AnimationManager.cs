@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     private bool landed;
     public bool defend;
 

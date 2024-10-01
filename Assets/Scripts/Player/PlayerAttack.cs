@@ -57,7 +57,6 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = true;
         animate = true;
         basicAttackObject.SetActive(true);
-        Debug.Log(PlayerController.player.attackSpeed);
         yield return new WaitForSeconds(PlayerController.player.attackSpeed);
         basicAttackObject.SetActive(false);
         yield return new WaitForSeconds(PlayerController.player.attackCooldown);
@@ -91,6 +90,6 @@ public class PlayerAttack : MonoBehaviour
         skill = null;
         StartCoroutine(SkillCardRotation.Instance.RotationCoroutine());
         SkillCardRotation.Instance.shouldRotate = true;
-        skillManager.indicatorSprite.sprite = null;
+        //skillManager.indicatorSprite.sprite = null;
     }
 }

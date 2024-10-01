@@ -3595,7 +3595,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1272552996151223072, guid: 3643fdc5a436f408a94017f2a22dfca7, type: 3}
   m_PrefabInstance: {fileID: 261593154}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1453670557}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c3f6a343bd36480395095333c6fb6a6, type: 3}
@@ -3738,8 +3738,12 @@ MonoBehaviour:
   i: 0
   radius: 5
   cardDistance: 1.5
-  indicatorSprite: {fileID: 1724312723}
-  player: {fileID: 1817453036}
+  player: {fileID: 1453670557}
+--- !u!1 &1453670557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2557312955586517042, guid: 3643fdc5a436f408a94017f2a22dfca7, type: 3}
+  m_PrefabInstance: {fileID: 261593154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1478377700
 GameObject:
   m_ObjectHideFlags: 0
@@ -4234,11 +4238,6 @@ RectTransform:
   m_AnchoredPosition: {x: 5.8999023, y: 1.4000244}
   m_SizeDelta: {x: -17, y: -7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!212 &1724312723 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6858673269724174281, guid: 3643fdc5a436f408a94017f2a22dfca7, type: 3}
-  m_PrefabInstance: {fileID: 261593154}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1755439330
 GameObject:
   m_ObjectHideFlags: 0
@@ -4537,11 +4536,6 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6328663009615826283, guid: 7c5df8266ec6da44ba5912a42af66b34, type: 3}
   m_PrefabInstance: {fileID: 3870145422152638407}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1817453036 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5688740106360057875, guid: 3643fdc5a436f408a94017f2a22dfca7, type: 3}
-  m_PrefabInstance: {fileID: 261593154}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1844843152 stripped
 GameObject:
@@ -5379,7 +5373,6 @@ MonoBehaviour:
   i: 0
   radius: 5
   cardDistance: 1.5
-  indicatorSprite: {fileID: 0}
   player: {fileID: 0}
 --- !u!114 &2032330915
 MonoBehaviour:
