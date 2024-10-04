@@ -11,9 +11,7 @@ public class SkillManager : MonoBehaviour
     [HideInInspector] public int i = 0;
     public float radius = 5f;
     public float cardDistance = 1.5f;
-    public SpriteRenderer indicatorSprite;
-    [SerializeField] GameObject player;
-    PlayerAttack playerAttack;
+    // public SpriteRenderer indicatorSprite;
 
     private void Start()
     {
@@ -22,20 +20,19 @@ public class SkillManager : MonoBehaviour
             skillList.Add(skill);
         }
 
-        playerAttack = player.GetComponent<PlayerAttack>();
         SkillCardRotation.Instance.Setup();
     }
 
     private void FixedUpdate()
     {
-        if (skillList.Count != 0)
-        {
-            indicatorSprite.sprite = skillList[i].indicatorSprite;
-        }
+        // if (skillList.Count != 0)
+        // {
+        //     indicatorSprite.sprite = skillList[i].indicatorSprite;
+        // }
 
         if (Input.GetKey(KeySettings.skillAttackKey) && !SkillCardRotation.Instance.isRotating)
         {
-            playerAttack.Setup(skillList[i]);
+            PlayerController.playerAttack.Setup(skillList[i]);
             SkillCardRotation.Instance.shouldRotate = false;
             // if (SkillCardRotation.Instance.rotationCoroutineInstance != null)
             // {
