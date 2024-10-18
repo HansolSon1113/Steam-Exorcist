@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
             {
                 Instantiate(scrapPrefab, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
             }
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 

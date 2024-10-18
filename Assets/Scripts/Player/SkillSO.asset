@@ -26,5 +26,7 @@ MonoBehaviour:
         self: 0
         ignoreTerrain: 1
         isProjectile: 0
+        useMouseRotation: 1
+        singleTarget: 0
         prefab: {fileID: 922007853533194556, guid: 5b6d9751c7e824a3190a7b207959258e, type: 3}
       speed: 0

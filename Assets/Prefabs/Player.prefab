@@ -247,6 +247,7 @@ MonoBehaviour:
   player: {fileID: 4469222549558683252}
   isAttacking: 0
   basicAttack: {fileID: 3521955074805514664}
+  basicAttackObject: {fileID: 0}
   animate: 0
 --- !u!114 &575649547942828835
 MonoBehaviour:
@@ -283,6 +284,8 @@ MonoBehaviour:
       self: 0
       ignoreTerrain: 0
       isProjectile: 0
+      useMouseRotation: 0
+      singleTarget: 1
       prefab: {fileID: 8489591772693873536, guid: 0b0bee748015946d3a27d6b2422d3f07, type: 3}
     _health: 16
     _maxHealth: 16
@@ -320,6 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3f6a343bd36480395095333c6fb6a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   defend: 0
 --- !u!114 &7825229517411207463
 MonoBehaviour:
@@ -446,6 +450,8 @@ MonoBehaviour:
     self: 0
     ignoreTerrain: 0
     isProjectile: 0
+    useMouseRotation: 0
+    singleTarget: 0
     prefab: {fileID: 0}
 --- !u!1 &3306288243271517758
 GameObject:

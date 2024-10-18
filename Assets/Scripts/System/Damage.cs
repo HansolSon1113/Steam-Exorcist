@@ -11,6 +11,8 @@ public class Damage
     public bool self;
     public bool ignoreTerrain;
     public bool isProjectile;
+    public bool useMouseRotation;
+    public bool singleTarget;
     public GameObject prefab;
 
     public Damage(int minDamage, int maxDamage, float critChance, float critMultiplier, float armorPenetration, bool ally)

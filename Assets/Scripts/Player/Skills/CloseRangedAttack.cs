@@ -34,7 +34,6 @@ public class CloseRangedAttack : MonoBehaviour
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("CloseRangeAttack") == true)
         {
             float animTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            Debug.Log(animTime);
             if(animTime >= 1)
             {
                 Destroy(this.gameObject);

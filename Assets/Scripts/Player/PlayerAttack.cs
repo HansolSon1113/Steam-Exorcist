@@ -78,7 +78,7 @@ public class PlayerAttack : MonoBehaviour
             playerMouseAngle = Mathf.Atan2(mouseLocation.y - player.position.y, mouseLocation.x - player.position.x) * Mathf.Rad2Deg + 90;
         }
 
-        var skillObject = Instantiate(skill.damage.prefab, transform.position, Quaternion.Euler(0f, 0f, playerMouseAngle));
+        var skillObject = Instantiate(skill.damage.prefab, transform.position, Quaternion.Euler(0f, 0f, (skill.damage.useMouseRotation) ? playerMouseAngle : 0f));
         for (int i = 0; i < skillObject.transform.childCount; i++)
         {
             skillObject.transform.GetChild(i).gameObject.GetComponent<PlayerDamage>().damage = skill.damage;

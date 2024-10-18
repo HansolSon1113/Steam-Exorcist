@@ -1,28 +1,45 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AICollision : MonoBehaviour
 {
     private bool hasChangedDirection = false;
     private EnemyController enemy;
+    public List<Damage> hitList = new List<Damage>();
 
     void Start()
     {
         enemy = GetComponent<EnemyController>();
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "PlayerDamage" && !hitList.Contains(other.GetComponent<PlayerDamage>().damage))
+        {
+            hitList.Add(other.GetComponent<PlayerDamage>().damage);
+            DoDamage.toTarget(enemy.enemy, other.GetComponent<PlayerDamage>().damage);
+            enemy.enemy.enemyIndicator.UpdateHealthBar(enemy.enemy.health);
+            if (other.GetComponent<PlayerDamage>().damage.singleTarget)
+            {
+                if (other.GetComponent<PlayerDamage>().damage.isProjectile)
+                {
+                    Destroy(other.gameObject);
+                }
+                else
+                {
+                    other.gameObject.SetActive(false);
+                }
+            }
+            KnockBack(PlayerController.player.direction, 3f);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "PlayerDamage")
         {
-            DoDamage.toTarget(enemy.enemy, other.GetComponent<PlayerDamage>().damage);
-            if (other.GetComponent<PlayerDamage>().damage.isProjectile)
-            {
-                Destroy(other.gameObject);
-            }
-            //enemy.enemyIndicator.UpdateHealthBar(enemy.health);
-            other.gameObject.SetActive(false);
-            KnockBack(PlayerController.player.direction, 3f);
+            hitList.Remove(other.GetComponent<PlayerDamage>().damage);
         }
     }
 
