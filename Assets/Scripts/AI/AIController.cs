@@ -37,6 +37,7 @@ public class AIController : MonoBehaviour
 
             if (!enemyController.enemy.playerFound && terrainTransform != null)
             {
+                enemyController.isWalking = true;
                 aiSensor.isOn = true;
                 Search();
             }
@@ -57,7 +58,6 @@ public class AIController : MonoBehaviour
                 enemyController.enemy.canMove = true;
                 enemyController.enemy.canAttack = true;
                 stunTime = 0f;
-                enemyController.isWalking = true;
             }
             if (enemyController.isWalking == true || enemyController.isAttacking == true)
             {

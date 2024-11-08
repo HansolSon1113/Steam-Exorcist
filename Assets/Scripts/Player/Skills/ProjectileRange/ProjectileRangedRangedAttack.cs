@@ -32,12 +32,12 @@ public class ProjectileRangedAttack : MonoBehaviour
                 chargeComplete = true;
                 projectile.SetActive(true);
                 this.transform.SetParent(null);
+                PlayerController.animationManager.animator.SetBool("ProjectileRangedAttack", false);
             }
         }
         else if(chargeTime < maxChargeTime)
         {
             Destroy(this.gameObject);
-            PlayerController.animationManager.animator.SetBool("ProjectileRangedAttack", false);
         }
 
         if(chargeComplete)

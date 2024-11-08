@@ -93,6 +93,7 @@ public class PlayerAttack : MonoBehaviour
         skill = null;
         StartCoroutine(SkillCardRotation.Instance.RotationCoroutine());
         SkillCardRotation.Instance.shouldRotate = true;
+        SkillManager.Instance.i++;
         //skillManager.indicatorSprite.sprite = null;
     }
 }
