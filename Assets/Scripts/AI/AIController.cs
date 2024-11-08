@@ -12,6 +12,7 @@ public class AIController : MonoBehaviour
     public EnemyController enemyController;
     public Rigidbody2D rb;
     public float maxX, minX;
+    private float stunTime;
 
     void Start()
     {
@@ -21,30 +22,52 @@ public class AIController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!enemyController.enemy.playerFound)
+        if (enemyController.enemy.canMove)
         {
-            this.transform.position += new Vector3(enemyController.enemy.direction * speed * Time.deltaTime, 0, 0);
-        }
+            if (!enemyController.enemy.playerFound)
+            {
+                this.transform.position += new Vector3(enemyController.enemy.direction * speed * Time.deltaTime, 0, 0);
+            }
 
-        if (enemyController.enemy.playerFound && ((target.position - this.transform.position).magnitude > 10f) || (terrainTransform != null && (this.transform.position.x < minX || this.transform.position.x > maxX)))
-        {
-            enemyController.enemy.playerFound = false;
-            enemyController.isWalking = true;
-        }
+            if (enemyController.enemy.playerFound && ((target.position - this.transform.position).magnitude > 10f) || (terrainTransform != null && (this.transform.position.x < minX || this.transform.position.x > maxX)))
+            {
+                enemyController.enemy.playerFound = false;
+                enemyController.isWalking = true;
+            }
 
-        if (!enemyController.enemy.playerFound && terrainTransform != null)
-        {
-            aiSensor.isOn = true;
-            Search();
+            if (!enemyController.enemy.playerFound && terrainTransform != null)
+            {
+                aiSensor.isOn = true;
+                Search();
+            }
+
+            if (enemyController.enemy.direction == dir.left)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (enemyController.enemy.direction == dir.right)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
         }
-        
-        if(enemyController.enemy.direction == dir.left)
+        else
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if(enemyController.enemy.direction == dir.right)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            if(stunTime >= 2)
+            {
+                enemyController.enemy.canMove = true;
+                enemyController.enemy.canAttack = true;
+                stunTime = 0f;
+                enemyController.isWalking = true;
+            }
+            if (enemyController.isWalking == true || enemyController.isAttacking == true)
+            {
+                enemyController.isWalking = false;
+                enemyController.isAttacking = false;
+            }
+            else
+            {
+                stunTime += Time.deltaTime;
+            }
         }
     }
 
@@ -55,7 +78,7 @@ public class AIController : MonoBehaviour
             enemyController.enemy.direction = dir.left * dir.opposite;
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        else if(this.transform.position.x > maxX - this.transform.localScale.x / 2)
+        else if (this.transform.position.x > maxX - this.transform.localScale.x / 2)
         {
             enemyController.enemy.direction = dir.right * dir.opposite;
             rb.velocity = new Vector2(0, rb.velocity.y);

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1641556793659987762}
-  - component: {fileID: 2279715380588913147}
-  - component: {fileID: 4082518584964677867}
+  - component: {fileID: 3339103078405291013}
+  - component: {fileID: 510394612896866532}
   m_Layer: 0
-  m_Name: CloseRangedAttack
+  m_Name: ProjectileRangedAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,14 +27,29 @@ Transform:
   m_GameObject: {fileID: 922007853533194556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1023714357900377823}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!95 &2279715380588913147
+--- !u!114 &3339103078405291013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922007853533194556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a390becc2ba1742c2b801d59629df79c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 510394612896866532}
+  projectile: {fileID: 6173650713088156776}
+  playerDamage: {fileID: 3895117749127484241}
+--- !u!95 &510394612896866532
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -44,7 +59,7 @@ Animator:
   m_GameObject: {fileID: 922007853533194556}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9f169d958e45041e6a6d57156ad86359, type: 2}
+  m_Controller: {fileID: 9100000, guid: 443848db2e73244fbbc1baa81b337442, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -55,19 +70,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4082518584964677867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922007853533194556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 883ccfd31aafb44cf8fc6a35e151c97b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 2279715380588913147}
 --- !u!1 &6173650713088156776
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +83,7 @@ GameObject:
   - component: {fileID: 3895117749127484241}
   - component: {fileID: 4212437118707668413}
   m_Layer: 0
-  m_Name: CloseRangedAttack
+  m_Name: ProjectileRangedAttack
   m_TagString: PlayerDamage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +144,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 4ee6ac456138a4c14b200c194933b96d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -179,6 +181,7 @@ MonoBehaviour:
     singleTarget: 0
     prefab: {fileID: 0}
     stun: 0
+  speed: 0
 --- !u!61 &4212437118707668413
 BoxCollider2D:
   m_ObjectHideFlags: 0

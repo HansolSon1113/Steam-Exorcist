@@ -14,6 +14,7 @@ public class Damage
     public bool useMouseRotation;
     public bool singleTarget;
     public GameObject prefab;
+    public bool stun;
 
     public Damage(int minDamage, int maxDamage, float critChance, float critMultiplier, float armorPenetration, bool ally)
     {

@@ -31,6 +31,7 @@ public class SkillCardRotation : MonoBehaviour
             yield return StartCoroutine(RotateSprite());
         }
 
+        Debug.Log(SkillManager.Instance.i); //어디선가 f누르면 i를 0으로 만들어요 😱
         SkillManager.Instance.i = (SkillManager.Instance.i + 1) % SkillManager.Instance.skillList.Count;
     }
 

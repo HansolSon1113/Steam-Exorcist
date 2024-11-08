@@ -16,7 +16,7 @@ MonoBehaviour:
   - name: CloseRangedAttack
     indicatorSprite: {fileID: 7482667652216324306, guid: 4a76559d7c7cd4d65a3c37f704ed9b23, type: 3}
     skill:
-    - name: CloseRangedAttack_Normal
+    - name: CRA_Normal
       damage:
         minDamage: 50
         maxDamage: 50
@@ -29,4 +29,23 @@ MonoBehaviour:
         useMouseRotation: 1
         singleTarget: 0
         prefab: {fileID: 922007853533194556, guid: 5b6d9751c7e824a3190a7b207959258e, type: 3}
+        stun: 1
       speed: 0
+  - name: ProjectileRangedAttack
+    indicatorSprite: {fileID: 7482667652216324306, guid: 4a76559d7c7cd4d65a3c37f704ed9b23, type: 3}
+    skill:
+    - name: PRA_Normal
+      damage:
+        minDamage: 50
+        maxDamage: 50
+        critChance: 0
+        critMultiplier: 1
+        armorPenetration: 0
+        self: 0
+        ignoreTerrain: 1
+        isProjectile: 1
+        useMouseRotation: 1
+        singleTarget: 0
+        prefab: {fileID: 922007853533194556, guid: f3789bb7b47db4a1d8583cd74e355c6e, type: 3}
+        stun: 1
+      speed: 10

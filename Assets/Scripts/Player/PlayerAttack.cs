@@ -81,12 +81,15 @@ public class PlayerAttack : MonoBehaviour
         var skillObject = Instantiate(skill.damage.prefab, transform.position, Quaternion.Euler(0f, 0f, (skill.damage.useMouseRotation) ? playerMouseAngle : 0f));
         for (int i = 0; i < skillObject.transform.childCount; i++)
         {
-            skillObject.transform.GetChild(i).gameObject.GetComponent<PlayerDamage>().damage = skill.damage;
+            var skillDamage = skillObject.transform.GetChild(i).gameObject.GetComponent<PlayerDamage>();
+            skillDamage.damage = skill.damage;
+            skillDamage.speed = skill.speed;
+            Debug.Log($"{skillDamage.speed} {skill.speed}");
         }
 
         GameObject[] children = new GameObject[skillObject.transform.childCount];
 
-        Destroy(skillObject, 3f);
+        Destroy(skillObject, 5f);
         skill = null;
         StartCoroutine(SkillCardRotation.Instance.RotationCoroutine());
         SkillCardRotation.Instance.shouldRotate = true;

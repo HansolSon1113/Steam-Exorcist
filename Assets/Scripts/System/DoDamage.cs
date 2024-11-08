@@ -34,6 +34,11 @@ public class DoDamage : MonoBehaviour
                     }
                 }
             }
+            if(damage.stun)
+            {
+                target.canMove = false;
+                target.canAttack = false;
+            }
         }
     }
 }

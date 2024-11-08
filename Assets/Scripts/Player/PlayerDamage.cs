@@ -5,4 +5,5 @@ using UnityEngine;
 public class PlayerDamage : MonoBehaviour
 {
     public Damage damage;
+    public float speed;
 }

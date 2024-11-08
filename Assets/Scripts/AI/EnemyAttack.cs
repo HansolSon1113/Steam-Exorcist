@@ -15,7 +15,7 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
-        if (enemyController.enemy.playerFound)
+        if (enemyController.enemy.playerFound && enemyController.enemy.canAttack)
         {
             foreach (Damage damage in damage)
             {
