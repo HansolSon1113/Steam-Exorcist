@@ -53,7 +53,7 @@ public class PlayerCollision : MonoBehaviour
 
         if (other.gameObject.tag == "EnemyDamage")
         {
-            DoDamage.toTarget(PlayerController.player, other.GetComponent<EnemyDamage>().damage);
+            other.GetComponent<EnemyDamage>().damage.toTarget(PlayerController.player);
             if (!PlayerController.player.isInvincible)
             {
                 StartCoroutine(PlayerDefend.Invincible());

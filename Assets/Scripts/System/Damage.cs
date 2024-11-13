@@ -24,4 +24,42 @@ public class Damage
         this.critMultiplier = critMultiplier;
         this.armorPenetration = armorPenetration;
     }
+
+    public static void toTarget(Entity target)
+    {
+        if (!target.isInvincible)
+        {
+            Health targetHealth = target.health;
+            float armor = target.armor;
+            if (targetHealth != null)
+            {
+                float damageAmount = Random.Range(minDamage, maxDamage + 1);
+                if (Random.value < critChance / 100f)
+                {
+                    damageAmount *= critMultiplier;
+                }
+                float armorReduction = 1 - ((armor - armorPenetration) / 100f);
+                damageAmount *= armorReduction;
+
+                if (target.health.barrier == 0)
+                {
+                    targetHealth.health -= damageAmount;
+                }
+                else
+                {
+                    targetHealth.barrier -= damageAmount;
+                    if (targetHealth.barrier < 0)
+                    {
+                        targetHealth.health += targetHealth.barrier;
+                        targetHealth.barrier = 0;
+                    }
+                }
+            }
+            if(stun)
+            {
+                target.canMove = false;
+                target.canAttack = false;
+            }
+        }
+    }
 }

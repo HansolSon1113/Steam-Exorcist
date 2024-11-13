@@ -18,7 +18,7 @@ public class AICollision : MonoBehaviour
         if (other.gameObject.tag == "PlayerDamage" && !hitList.Contains(other.GetComponent<PlayerDamage>().damage))
         {
             hitList.Add(other.GetComponent<PlayerDamage>().damage);
-            DoDamage.toTarget(enemy.enemy, other.GetComponent<PlayerDamage>().damage);
+            other.GetComponent<PlayerDamage>().damage.toTarget(enemy.enemy);
             enemy.enemy.enemyIndicator.UpdateHealthBar(enemy.enemy.health);
             if (other.GetComponent<PlayerDamage>().damage.singleTarget)
             {
